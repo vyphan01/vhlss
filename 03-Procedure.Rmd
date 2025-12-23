@@ -1,0 +1,159 @@
+# Cleaning Procedure
+Below is the code used to clean VHLSS 2014 to 2018 at household level
+
+## Clear all settings
+```{r, eval=FALSE, engine='stata'}
+cap log close
+clear all
+clear matrix
+set more off
+eststo clear
+```
+
+## Set Working Directory
+Replace username and path to your folder
+
+```{r, eval=FALSE, engine='stata'}
+if "`c(username)'" == "XXX" {
+gl MyProject "/Users/XXX/My Drive/DEPOCEN - VHLSS Data cleaning"
+	gl data "$MyProject/data"
+	gl clean "$MyProject/clean"
+	gl temp  "$MyProject/temp"
+}
+```
+
+## Clean data for each year
+### Make sure each file is uniquely defined
+```{r, eval=FALSE, engine='stata'}
+forval i = 14 (2) 18 {
+	foreach m in Ho1 Ho2 Ho3 Ho4 {
+		use "$data/VHLSS_20`i'/hhold/`m'.dta", clear
+		duplicates drop tinh huyen xa diaban hoso, force
+		tempfile uniq_`m'_20`i'
+		save `uniq_`m'_20`i'', replace
+	}
+}
+```
+
+### Merge household file
+```{r, eval=FALSE, engine='stata'}
+forval i = 14 (2) 18 {
+	use `uniq_Ho1_20`i'', clear
+	merge 1:1 tinh huyen xa diaban hoso using `uniq_Ho2_20`i''
+	drop _merge
+
+	merge 1:1 tinh huyen xa diaban hoso using `uniq_Ho3_20`i''
+	drop _merge	
+
+	merge 1:1 tinh huyen xa diaban hoso using `uniq_Ho4_20`i''
+	drop _merge
+
+	save "$temp/ho_20`i'.dta", replace
+}
+```
+
+### Generate variables
+```{r, eval=FALSE, engine='stata'}
+forval i = 14 (2) 18 {
+	use "$data/VHLSS_20`i'/hhold/Muc1A.dta", clear
+	keep if m1ac3 == 1 // keep if that individual is household head
+	keep tinh huyen xa diaban hoso m1ac2 m1ac5
+	duplicates drop tinh huyen xa diaban hoso, force
+		// Gender of household head
+	merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_20`i'.dta"
+	keep if _m == 3
+	drop _m
+		// Total expenditure
+	egen tongchi_01 = rowtotal(chisxkd_1 chisxkd_2 chisxkd_3 chisxkd_4 chisxkd_5 chisxkd_6 chisxkd_7 chisxkd_8 chikhac_1 chikhac_2 chikhac_3 chikhac_4 chikhac_5 chikhac_6 chikhac_7 chikhac_8 chikhac_9)
+	save "$temp/ho_20`i'.dta", replace
+}
+```
+
+### Take variables from individual file
+These variables do not have in household file, so we need to take them from individual file
+
+```{r, eval=FALSE, engine='stata'}
+use "$data/VHLSS_2014/hhold/Muc3C.dta", clear
+  collapse (sum) m3c11 m3c13 m3c14 m3c15, by(tinh huyen xa diaban hoso)
+  merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_2014.dta"
+  drop _m
+save "$temp/ho_2014.dta", replace
+	
+use "$data/VHLSS_2014/hhold/Muc3B.dta", clear
+	collapse (sum) m3c5b m3c6b, by(tinh huyen xa diaban hoso)
+	merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_2014.dta"
+	drop _m
+save "$temp/ho_2014.dta", replace
+	
+use "$data/VHLSS_2014/hhold/Muc7.dta", clear
+	keep tinh huyen xa diaban hoso m7c1 m7c2 m7c8 m7c17
+	merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_2014.dta"
+	drop _m
+save "$temp/ho_2014.dta", replace
+```
+
+## Create panal data
+### Import the meta data
+Since same variable can have different name in each year, we need to change them into 1 name to append together. This metadata will be used to rename, keep and label all wanted variables.
+```{r, eval=FALSE, engine='stata'}
+import delimited "$data/VHLSS_codebook_9k - ho.csv", varnames(1) encoding(UTF-8) clear
+```
+
+### Rename and label code
+```{r, eval=FALSE, engine='stata'}
+local N = _N
+
+forval i = 2014 (2) 2018 {
+    // Open file to write
+    file open myfile using `"$temp/label`i'.do"', write text replace
+	
+	local renamed_vars ""
+    forval iii = 1/`N' {
+        local vvvcode = code[`iii']
+        local vvv_i = code_`i'[`iii']  // Chuyển từ vvv`i' thành vvv_i để tránh lỗi cú pháp
+		local v_desc = description[`iii']
+        
+        // Check if code_`i' is not empty
+        if `"`vvv_i'"' != "" {
+				  // Create the Rename command
+            local result = `"ren `vvv_i' `vvvcode'"'
+			file write myfile `"`result'"' _n
+				
+				  // Create the Label command
+            local lab_cmd `"label variable `vvvcode' `"`v_desc'"'"'
+            file write myfile `"`lab_cmd'"' _n
+            
+            local renamed_vars "`renamed_vars' `vvvcode'"            
+        }
+    }
+	file write myfile `"keep`renamed_vars'"' 
+  
+    // Close file
+    file close myfile
+}
+```
+
+```{r, eval=FALSE, engine='stata'}
+clear
+
+tempfile combined_data
+save `combined_data', emptyok
+
+forval i = 2014 (2) 2018 {
+    // Use file corresponding to each year
+    use "$temp/ho_`i'.dta", clear
+
+    // Run file .do corresponding to each year
+    do `"$temp/label`i'.do"'
+	  
+	  gen year = `i'
+
+    // Append data to initially created file
+    append using `combined_data'
+
+    save `combined_data', replace
+}
+
+save "$clean/vhlss_14_18.dta", replace
+```
+

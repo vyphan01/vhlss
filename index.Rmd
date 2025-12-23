@@ -1,0 +1,40 @@
+--- 
+title: "VHLSS Cleaning Procedure"
+author: "Tuong-Vy Phan, Nguyen Thi Hong Tram & Huy Le Vu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Preface {-}
+The Viet Nam Household Living Standards Survey (VHLSS) is one of the most comprehensive and widely used micro-datasets for socio-economic research in Viet Nam. However, because the survey has evolved significantly since its inception in 1993—with changes in sampling design, questionnaire structure, and variable naming—longitudinal analysis requires rigorous data cleaning and harmonization.
+
+**The Purpose of this Book**
+
+This documentation was developed by the Development and Policies Research Center (DEPOCEN) to serve as a standardized guide for researchers and data analysts. Our goal is to ensure that the data cleaning process is:
+
+* Reproducible: All steps are scripted to ensure consistency.
+* Transparent: Every decision regarding outliers, missing values, and variable merging is documented.
+* Accessible: By centralizing metadata and harmonization crosswalks, we aim to reduce the "entry barrier" for new researchers using VHLSS.
+
+**Who is this for?**
+This guide is intended for economists, policy analysts, and students who are working with VHLSS microdata. We assume a basic understanding of statistical software (specifically Stata and R) and familiarity with household survey structures.
+
+**Structure of the Documentation**
+* Data Structure: An overview of the VHLSS history and sample design.
+* Cleaning Procedure: A step-by-step workflow for moving from raw files to a master harmonized dataset, with provided Stata code
+* Notes & References: A collection of insights from the wider economic research community.
+
+**Acknowledgements** 
+We would like to thank the General Statistics Office (GSO) for their work in conducting these surveys and the various scholars whose previous notes on VHLSS provided the foundation for this consolidated procedure.
+
+

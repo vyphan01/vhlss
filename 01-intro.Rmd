@@ -1,0 +1,19 @@
+# Overview
+
+## Purpose {-}
+To evaluate living standards for policy-making and socio-economic development planning, from 1993 to now the General Statistics Office (GSO) conducts the Viet Nam Household Living Standards Survey (VHLSS). The purpose of the VHLSS in order to systematically monitor and supervise the living standards of different population groups in Viet Nam; to monitor and evaluate the implementation of the Comprehensive Poverty Reduction and Growth Strategy; and to contribute to the evaluation of achievement of the Sustainable Development Goals (SDGs) and Vietnam’s socio-economic development goals.
+
+## Availability {-}
+From 2002 to 2010, this survey has been conducted regularly by the GSO every two years. From 2011 to 2022, VHLSS are conducted annually. However, the odd-numbered year surveys only collect data on demographics, employment and income.
+
+## Survey period {-}
+* The survey was conducted in four periods in March, June, September and December. The period for collecting information in the locality is one month.
+* The reference period of household income and expenditure was the last 12 months.
+
+## Coverage of the survey {-}
+Geographically, the survey covered the whole country. Scope of the survey included all selected enumeration areas and communes in 63 provinces and cities under central management.
+
+## Data collection method {-}
+Face-to-face interviews
+
+

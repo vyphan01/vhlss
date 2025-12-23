@@ -1,0 +1,17 @@
+# Important note during cleaning
+## Linking VHLSSs
+VHLSS is a rotating panel dataset. It is possible to construct a panel across three survey rounds (e.g., 2014-2016-2018) if the data is designed based on the same Population and Housing Census. For instance, the household system from 2010 to 2018 was designed from the 2009–2010 Census. However, because VHLSS 2020 was designed based on the 2019 Census, it is not possible to create a panel linking VHLSS 2016–2018 with 2020.
+
+## Inconsistent province codes
+As many users of Vietnamese data know, the number of provinces has changed significantly since the late 1980s. In most cases the changing of provincial boundaries was either a splitting or aggregating of existing provinces as opposed to districts being reallocated between provinces. The province codes also change within surveys and across data sources.
+
+## Inconsistent industry codes
+VSIC1993 is the basis of industry codes used in the 2002 through 2006 VHLSSs, the 2000 through 2007 enterprise data, and the 1999 population census. VSIC2007 is used in the 2008 through 2018 VHLSSs, the 2008 through 2017 enterprise data, and the 2009 population census. VSIC2018 is used in the 2019 population census.
+
+## Weight Data
+At household level, each VHLSS will have a weihgt data for each year. Usually we would use $wt9$, which is the weight of 9,000 household. There are also $wt36$ and $wt45$ is for file with 36,000 or 45,000 household.
+
+At individual level, we need to take the weight divided by the number of family member.
+  $\text{Weight individual} = \frac{\text{Weight household}}{\text{Houshold size}}$
+
+

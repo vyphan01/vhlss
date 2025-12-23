@@ -1,0 +1,81 @@
+# Data Structure
+## Outline of the survey
+* Section 1. Basic demographic characteristics related to living standards
+* Section 2. Education
+* Section 3. Labour - Employment 
+* Section 4. Health and health care 
+* Section 5. Income 
+* Section 6. Consumption expenditure 
+* Section 7. Durable goods 
+* Section 8. Housing, electricity, water, sanitation facilities and use of Internet 
+* Section 9. Participation in poverty reduction programs 
+* Section 10. Business production activities 
+* Section 11. Commune general characteristics 
+
+## Sample Size
+**Sample Overview**
+
+* Sample size: 46,995 households
+
+* Number of survey areas: 3,133 areas (selected from the master sample of the 2019 Population and Housing Census, updated as needed)
+
+The sample for the the year $t$ Residential Living Standards Survey (KSMS $t$) was designed in 2 steps as follows:
+
+**Step 1: Select Survey Areas**
+
+Select 3,133 areas from the master sample, structured as follows:
+
+* 25% (≈ 783 areas): Re-selected from areas surveyed only in KSMS $t-2$
+* 25% (≈ 783 areas): Re-selected from areas surveyed in both KSMS $t-2$ and KSMS $t-1$
+* 25% (≈ 783 areas): Re-selected from areas surveyed only in KSMS $t-1$
+* 25% (≈ 783 areas): Newly selected from the master sample
+
+**Step 2: Select Households for Survey**
+
+For areas re-selected from KSMS $t-1$/$t-2$:
+
+* Select all 15 households previously surveyed in $t-2$ and/or $t-1$
+* If a household is no longer in the area, a replacement household will be chosen
+* Additionally select 5 reserve households from the reserve lists of previous years (if insufficient, select adjacent households)
+
+For newly selected areas:
+
+* Update the list of all households in the area
+* Select 20 households using the systematic random method from the updated list
+* From these, select 15 main households and 5 reserve households
+
+## Basic Statistics
+### Library {-}
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(summarytools)
+library(haven)
+library(sjlabelled)
+library(webshot2)
+```
+
+### Import data {-}
+```{r}
+vhlss <- read_dta("clean/vhlss_14_18.dta")
+
+var_to_drop <- c("tinh", "huyen", "xa", "diaban", "hoso", "gioitinh", "dantoc")
+```
+
+### Summary statistics {-}
+```{r}
+source("script/gt_summarytools.R")
+
+vhlss <- vhlss %>%
+  head(9399) %>%
+  select(where(is.numeric)) %>% 
+  select(-any_of(var_to_drop)) %>%
+  mutate(across(everything(), ~ ifelse(.x < 0, NA, .x))) %>%
+  copy_labels(vhlss)
+```
+
+```{r, eval=knitr::is_html_output(), warning=FALSE, message=FALSE, results='asis'}
+gt_summarytools(data = vhlss, title = "VHLSS 2014-2018 Data Summary")
+```
+
