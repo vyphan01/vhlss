@@ -1,12 +1,13 @@
-# Data Structure
+# Dataset Basic Information
 ## Outline of the survey
+
 * Section 1. Basic demographic characteristics related to living standards
 * Section 2. Education
-* Section 3. Labour - Employment 
-* Section 4. Health and health care 
-* Section 5. Income 
-* Section 6. Consumption expenditure 
-* Section 7. Durable goods 
+* Section 3. Labor - Employment
+* Section 4. Health and health care
+* Section 5. Income
+* Section 6. Consumption expenditure
+* Section 7. Durable goods
 * Section 8. Housing, electricity, water, sanitation facilities and use of Internet 
 * Section 9. Participation in poverty reduction programs 
 * Section 10. Business production activities 
@@ -15,9 +16,59 @@
 ## Sample Size
 **Sample Overview**
 
-* Sample size: 46,995 households
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(knitr)
+library(kableExtra)
 
-* Number of survey areas: 3,133 areas (selected from the master sample of the 2019 Population and Housing Census, updated as needed)
+# 1. Create the data frame
+sample_size <- data.frame(
+  Year = c("2008", "2010", "2012", "2014", "2016", "2018", "2020"),
+  Total = c(
+    "45.945",
+    "69.360",
+    "",
+    "46.995",
+    "46.995",
+    "46.995",
+    "46.980"
+  ),
+  Income = c(
+    "",
+    "",
+    "",
+    "37.596",
+    "37.596",
+    "37.596",
+    ""
+  ),
+  Expenditure = c(
+    "9.189",
+    "9.399",
+    "9.399",
+    "9.399",
+    "9.399",
+    "9.399",
+    ""
+  ),
+  check.names = FALSE
+)
+
+# 2. Render the table with notes
+kable(sample_size, booktabs = TRUE, 
+      caption = "Sample Size by Survey Year (households)") %>%
+  kable_styling(latex_options = c("striped", "hold_position"),
+                bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  column_spec(1, monospace = TRUE, width = "10em") %>% 
+  column_spec(2:4, width = "12em") %>%
+  row_spec(0, bold = TRUE, background = "#1a2980", color = "white") %>%
+  footnote(general = c("Total: Total surveyed households;",
+                       "Income: Households were asked about income and other issues;",
+                       "Expenditure: Households were asked about income, expenditure and other issues"),
+           general_title = "Notes:",
+           footnote_as_chunk = TRUE,
+           title_format = c("italic", "underline"))
+```
 
 The sample for the the year $t$ Residential Living Standards Survey (KSMS $t$) was designed in 2 steps as follows:
 
@@ -44,38 +95,12 @@ For newly selected areas:
 * Select 20 households using the systematic random method from the updated list
 * From these, select 15 main households and 5 reserve households
 
-## Basic Statistics
-### Library {-}
-```{r, warning=FALSE, message=FALSE}
-library(tidyverse)
-library(gt)
-library(gtExtras)
-library(summarytools)
-library(haven)
-library(sjlabelled)
-library(webshot2)
-```
+## Rotating panel
+The VHLSS uses a rotating panel design, allowing for the construction of a panel across three survey rounds (e.g., 2014-2016-2018), provided the data is based on the same Population and Housing Census sampling frame. For instance, the household systems from 2010 to 2018 were designed using the 2009 Census. However, since the 2020 VHLSS was based on the 2019 Census, it is not possible to create a panel linking VHLSS 2016-2018 with 2020.
 
-### Import data {-}
-```{r}
-vhlss <- read_dta("clean/vhlss_14_18.dta")
+## Weight Data
+At household level, each VHLSS will have a weihgt data for each year. Usually we would use $wt9$, which is the weight of 9,000 household. There are also $wt36$ and $wt45$ is for file with 36,000 or 45,000 household.
 
-var_to_drop <- c("tinh", "huyen", "xa", "diaban", "hoso", "gioitinh", "dantoc")
-```
-
-### Summary statistics {-}
-```{r}
-source("script/gt_summarytools.R")
-
-vhlss <- vhlss %>%
-  head(9399) %>%
-  select(where(is.numeric)) %>% 
-  select(-any_of(var_to_drop)) %>%
-  mutate(across(everything(), ~ ifelse(.x < 0, NA, .x))) %>%
-  copy_labels(vhlss)
-```
-
-```{r, eval=knitr::is_html_output(), warning=FALSE, message=FALSE, results='asis'}
-gt_summarytools(data = vhlss, title = "VHLSS 2014-2018 Data Summary")
-```
+At individual level, we need to take the weight divided by the number of family member.
+  $\text{Weight individual} = \frac{\text{Weight household}}{\text{Houshold size}}$
 

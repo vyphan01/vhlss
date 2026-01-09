@@ -1,5 +1,44 @@
-# Cleaning Procedure
-Below is the code used to clean VHLSS 2014 to 2018 at household level
+# Data Processing Procedure
+Analyzing the VHLSS longitudinally presents challenges due to structural design changes, administrative adjustments, and varying module contents. This section outlines these inconsistencies and our strategies for data harmonization. For this version, we utilize the 9,000-household sample to construct a pooled individual-level dataset, focusing on a specific subset of variables.
+
+The following sections provide a step-by-step guide to navigating this documentation.
+
+## Folder organization
+
+The folder contains data, do file and other materials are organized as follows:
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(knitr)
+library(kableExtra)
+
+# 1. Create the data frame
+folder_data <- data.frame(
+  `Sub-folder` = c("01_dofiles", "02_data", "03_temp", "04_clean", "05_metadata"),
+  Description = c(
+    "Code in Stata to clean the datasets",
+    "Raw dataset in Stata (.dta) format",
+    "Temporary files",
+    "Cleaned data in Stata (.dta) format",
+    "Questionnaire and codebook"
+  ),
+  Action = c(
+    "Run master.do only to modify cleaning",
+    "Do not modify",
+    "Do not modify",
+    "Download and use",
+    "Access questionnaire and codebook here"
+  ),
+  check.names = FALSE # Prevents R from changing 'Sub-folder' to 'Sub.folder'
+)
+
+# 2. Render the table
+kable(folder_data, booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), 
+                bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(1, monospace = TRUE) %>% 
+  row_spec(0, bold = TRUE)
+```
+
+After organizing folder, first thing we need to do is clear all settings and set working directory.
 
 ## Clear all settings
 ```{r, eval=FALSE, engine='stata'}
@@ -11,115 +50,137 @@ eststo clear
 ```
 
 ## Set Working Directory
-Replace username and path to your folder
+Replace username and path to your folder.
 
 ```{r, eval=FALSE, engine='stata'}
 if "`c(username)'" == "XXX" {
 gl MyProject "/Users/XXX/My Drive/DEPOCEN - VHLSS Data cleaning"
-	gl data "$MyProject/data"
-	gl clean "$MyProject/clean"
-	gl temp  "$MyProject/temp"
+	gl data "$MyProject/02_data"
+	gl temp  "$MyProject/03_temp"
+	gl clean "$MyProject/04_clean"
+	gl metadata "$MyProject/05_metadata"
 }
 ```
 
 ## Clean data for each year
-### Make sure each file is uniquely defined
+### Make sure each file is uniquely defined {-}
+As each survey year consists of multiple section-specific files, we must ensure all observations are uniquely identified prior to merging.
+
 ```{r, eval=FALSE, engine='stata'}
 forval i = 14 (2) 18 {
-	foreach m in Ho1 Ho2 Ho3 Ho4 {
-		use "$data/VHLSS_20`i'/hhold/`m'.dta", clear
-		duplicates drop tinh huyen xa diaban hoso, force
-		tempfile uniq_`m'_20`i'
-		save `uniq_`m'_20`i'', replace
+	foreach m in Muc1A Muc2A Muc2X Muc3A Muc3C Muc4a {
+		local filepath "$data/vhlss_20`i'/hh_9000/`m'.dta"
+		capture confirm file "`filepath'"
+		if _rc == 0 {
+			use "`filepath'", clear
+			if _N > 0 {
+				duplicates drop tinh huyen xa diaban hoso matv, force
+				tempfile uniq_`m'_20`i'
+				save `uniq_`m'_20`i'', replace
+			}
+		}
 	}
 }
 ```
 
-### Merge household file
+### Merge individual file {-}
 ```{r, eval=FALSE, engine='stata'}
 forval i = 14 (2) 18 {
-	use `uniq_Ho1_20`i'', clear
-	merge 1:1 tinh huyen xa diaban hoso using `uniq_Ho2_20`i''
-	drop _merge
-
-	merge 1:1 tinh huyen xa diaban hoso using `uniq_Ho3_20`i''
-	drop _merge	
-
-	merge 1:1 tinh huyen xa diaban hoso using `uniq_Ho4_20`i''
-	drop _merge
-
-	save "$temp/ho_20`i'.dta", replace
+	use `uniq_Muc1A_20`i'', clear
+		foreach m in Muc2A Muc2X Muc3A Muc3C Muc4a {
+			capture merge 1:1 tinh huyen xa diaban hoso matv using `uniq_`m'_20`i''
+			capture drop if _m == 2
+			capture drop _m
+		}
+	save "$temp/individual_20`i'.dta", replace
 }
 ```
 
-### Generate variables
+### Extract variables from household file {-}
+These variables do not appear in individual file, so we need to take them from household file.
+
 ```{r, eval=FALSE, engine='stata'}
 forval i = 14 (2) 18 {
-	use "$data/VHLSS_20`i'/hhold/Muc1A.dta", clear
-	keep if m1ac3 == 1 // keep if that individual is household head
-	keep tinh huyen xa diaban hoso m1ac2 m1ac5
+	use "$data/vhlss_20`i'/hh_9000/Ho1.dta", clear
+	keep tinh huyen xa diaban hoso ttnt dantoc tsnguoi // take area, ethnic and household size variable
 	duplicates drop tinh huyen xa diaban hoso, force
-		// Gender of household head
-	merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_20`i'.dta"
-	keep if _m == 3
-	drop _m
-		// Total expenditure
-	egen tongchi_01 = rowtotal(chisxkd_1 chisxkd_2 chisxkd_3 chisxkd_4 chisxkd_5 chisxkd_6 chisxkd_7 chisxkd_8 chikhac_1 chikhac_2 chikhac_3 chikhac_4 chikhac_5 chikhac_6 chikhac_7 chikhac_8 chikhac_9)
-	save "$temp/ho_20`i'.dta", replace
+	
+	tempfile indiv1_`i'
+	save `indiv1_`i''
+	
+	use "$data/vhlss_20`i'/hh_9000/Muc5a1.dta", clear
+	keep tinh huyen xa diaban hoso m5a1ma m5a1c2a m5a1c2b m5a1c3a m5a1c3b // take food consumption variabls
+	duplicates drop tinh huyen xa diaban hoso, force
+	
+	tempfile indiv2_`i'
+	save `indiv2_`i''
+	
+	use "$data/vhlss_20`i'/hh_9000/Muc5a2.dta", clear
+	keep tinh huyen xa diaban hoso m5a2ma m5a2c2a m5a2c2b // take food consumption variabls
+	duplicates drop tinh huyen xa diaban hoso, force
+	destring m5a2ma, replace
+	
+	tempfile indiv3_`i'
+	save `indiv3_`i''
+	
+	use "$temp/individual_20`i'.dta", clear
+		forval j = 1/3 {
+			merge m:1 tinh huyen xa diaban hoso using `indiv`j'_`i''
+			drop if _m == 2
+			drop _m
+		}
+	save "$temp/individual_20`i'.dta", replace
 }
 ```
 
-### Take variables from individual file
-These variables do not have in household file, so we need to take them from individual file
+### Label define all variables {-}
+Due to the legacy GSO encoding used in the raw data, we converted the character sets into a readable format. Specifically, we extracted the correct value labels for all variables of interest into a separate do-file, which is then executed within the master script.
 
 ```{r, eval=FALSE, engine='stata'}
-use "$data/VHLSS_2014/hhold/Muc3C.dta", clear
-  collapse (sum) m3c11 m3c13 m3c14 m3c15, by(tinh huyen xa diaban hoso)
-  merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_2014.dta"
-  drop _m
-save "$temp/ho_2014.dta", replace
-	
-use "$data/VHLSS_2014/hhold/Muc3B.dta", clear
-	collapse (sum) m3c5b m3c6b, by(tinh huyen xa diaban hoso)
-	merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_2014.dta"
-	drop _m
-save "$temp/ho_2014.dta", replace
-	
-use "$data/VHLSS_2014/hhold/Muc7.dta", clear
-	keep tinh huyen xa diaban hoso m7c1 m7c2 m7c8 m7c17
-	merge 1:1 tinh huyen xa diaban hoso using "$temp/ho_2014.dta"
-	drop _m
-save "$temp/ho_2014.dta", replace
+forval i = 14 (2) 18 {
+    use "$temp/individual_20`i'.dta", clear
+    
+    // Run the fixed labels
+    do "$temp/vhlss_labels_fixed.do"
+    
+    // Automatically attach labels to variables with the same name
+    foreach v of varlist _all {
+        capture label values `v' `v'
+    }
+    
+    save "$temp/individual_20`i'.dta", replace
+}
 ```
 
-## Create panal data
-### Import the meta data
-Since same variable can have different name in each year, we need to change them into 1 name to append together. This metadata will be used to rename, keep and label all wanted variables.
+## Append individual dataset
+### Import the meta data {-}
+Variable names and the ordering of questions frequently change between survey waves. For instance, the variable for `education` may be coded as *m2ac2a* in one year and *m2xc2a* in another. To facilitate analysis, we have compiled comprehensive metadata mapping variable names and labels for each year, which is available in the `05_metadata/VHLSS_codebook_9k_thanhvien - thanhvien.csv`. This dataset is restricted to variables of interest. To add further variables, download the [metadata](https://docs.google.com/spreadsheets/d/1zyGJARgK3_1daXMCwZtn-5dU-kDYZ0_u3rRJUfMP8xQ/edit?usp=sharing) and ensure all new variables are harmonized to account for naming inconsistencies across years.
+
 ```{r, eval=FALSE, engine='stata'}
-import delimited "$data/VHLSS_codebook_9k - ho.csv", varnames(1) encoding(UTF-8) clear
+import delimited "$metadata/VHLSS_codebook_9k_thanhvien - thanhvien.csv", varnames(1) encoding(UTF-8) clear
 ```
 
-### Rename and label code
+### Rename and label code {-}
 ```{r, eval=FALSE, engine='stata'}
 local N = _N
 
 forval i = 2014 (2) 2018 {
-    // Open file to write
-    file open myfile using `"$temp/label`i'.do"', write text replace
+    // Open file
+    file open myfile using `"$temp/label_in`i'.do"', write text replace
 	
 	local renamed_vars ""
     forval iii = 1/`N' {
         local vvvcode = code[`iii']
-        local vvv_i = code_`i'[`iii']  // Chuyển từ vvv`i' thành vvv_i để tránh lỗi cú pháp
+        local vvv_i = code_`i'[`iii']
 		local v_desc = description[`iii']
         
         // Check if code_`i' is not empty
         if `"`vvv_i'"' != "" {
-				  // Create the Rename command
+				// 1. Create the Rename command
             local result = `"ren `vvv_i' `vvvcode'"'
 			file write myfile `"`result'"' _n
 				
-				  // Create the Label command
+				// 2. Create the Label command
             local lab_cmd `"label variable `vvvcode' `"`v_desc'"'"'
             file write myfile `"`lab_cmd'"' _n
             
@@ -127,26 +188,26 @@ forval i = 2014 (2) 2018 {
         }
     }
 	file write myfile `"keep`renamed_vars'"' 
-  
-    // Close file
+
+    // close file
     file close myfile
 }
 ```
 
 ```{r, eval=FALSE, engine='stata'}
-clear
+clear all
 
 tempfile combined_data
 save `combined_data', emptyok
 
 forval i = 2014 (2) 2018 {
     // Use file corresponding to each year
-    use "$temp/ho_`i'.dta", clear
+    use "$temp/individual_`i'.dta", clear
 
     // Run file .do corresponding to each year
-    do `"$temp/label`i'.do"'
-	  
-	  gen year = `i'
+    do `"$temp/label_in`i'.do"'
+	
+	gen year = `i'
 
     // Append data to initially created file
     append using `combined_data'
@@ -154,6 +215,84 @@ forval i = 2014 (2) 2018 {
     save `combined_data', replace
 }
 
-save "$clean/vhlss_14_18.dta", replace
+save "$temp/vhlss_individual_14_18.dta", replace
+```
+
+## Inconsistent province codes
+As many users of Vietnamese data know, the number of provinces has changed significantly since the late 1980s. In most cases the changing of provincial boundaries was either a splitting or aggregating of existing provinces as opposed to districts being reallocated between provinces. The province codes also change within surveys and across data sources.
+
+All province codes in this processed dataset are consistent across years. The implementation of this standardization can be found in [Brian McCaig's website](https://sites.google.com/site/briandmccaig/notes-on-vhlsss).
+
+## Generate new variables
+Below are variables of interest that we create for our research purpose
+
+### Education {-}
+```{r, eval=FALSE, engine='stata'}
+gen education = 0 if general_edu == 0 & vocational_edu == 0
+replace education = 1 if general_edu == 1
+replace education = 2 if general_edu == 2
+replace education = 3 if general_edu == 3
+replace education = 4 if vocational_edu == 4
+replace education = 5 if vocational_edu == 5
+replace education = 6 if vocational_edu == 6
+replace education = 7 if vocational_edu == 7
+replace education = 8 if general_edu == 8
+replace education = 9 if general_edu == 9
+replace education = 10 if general_edu == 10
+replace education = 11 if general_edu == 11
+replace education = 12 if general_edu == 12
+
+lab var education "Bằng cấp cao nhất"
+lab def education_lbl 0 "Không có bằng cấp" ///
+				  1 "Tiểu học" ///
+				  2 "THCS" ///
+				  3 "THPT" ///
+				  4 "Sơ cấp nghề" ///
+				  5 "Trung cấp nghề" ///
+				  6 "Trung học chuyên nghiệp" ///
+				  7 "Cao đẳng nghề" ///
+				  8 "Cao đẳng" ///
+				  9 "Đại học" ///
+				  10 "Thạc sĩ" ///
+				  11 "Tiến sĩ" ///
+				  12 "Khác"
+lab val education education_lbl
+```
+
+### Total income {-}
+```{r, eval=FALSE, engine='stata'}
+foreach m in wage_1 holiday_bonus_1 bonus_1 wage_2 holiday_bonus_2 bonus_2 {
+	replace `m' = 0 if missing(`m')
+}
+
+egen income = rowtotal(wage_1 holiday_bonus_1 bonus_1 wage_2 holiday_bonus_2 bonus_2)
+replace income = . if income == 0
+
+lab var income "Tổng thu nhập từ tất cả các nguồn (tiền lương, tiền thưởng, phụ cấp, etc.) trong 12 tháng qua"
+```
+
+### Food consumption {-}
+```{r, eval=FALSE, engine='stata'}
+	// holiday consumption
+egen quant_h = rowtotal(food_cons1_q food_cons2_q)
+egen values_h = rowtotal(food_cons1_p food_cons2_p)
+
+	// daily consumption
+ren (food_cons3_q food_cons3_p) (quant_d values_d)
+	
+	// total consumption
+foreach m in quant_d quant_h values_d values_h {
+	replace `m' = 0 if `m' == .
+}
+
+gen food_quant = quant_d*350/30+quant_h
+gen food_values = values_d*350/30+values_h
+
+lab var food_quant "Số lượng thực phẩm tiêu thụ (kg)"
+lab var food_values "Trị giá thực phẩm tiêu thụ (nghìn đồng)"
+
+drop quant_* values_*
+
+save "$clean/vhlss_individual_14_18.dta", replace
 ```
 

@@ -106,20 +106,34 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={VHLSS Cleaning Procedure},
-  pdfauthor={Tuong-Vy Phan, Nguyen Thi Hong Tram \& Huy Le Vu},
+  pdftitle={Viet Nam Household Living Standards Survey Codebook},
+  pdfauthor={Development and Policies Research Center (DEPOCEN)},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{VHLSS Cleaning Procedure}
-\author{Tuong-Vy Phan, Nguyen Thi Hong Tram \& Huy Le Vu}
-\date{2025-12-23}
+\title{Viet Nam Household Living Standards Survey Codebook}
+\author{Development and Policies Research Center (DEPOCEN)}
+\date{2026-01-10}
 
 \begin{document}
 \maketitle
@@ -131,11 +145,9 @@
 \chapter*{Preface}\label{preface}
 \addcontentsline{toc}{chapter}{Preface}
 
-The Viet Nam Household Living Standards Survey (VHLSS) is one of the most comprehensive and widely used micro-datasets for socio-economic research in Viet Nam. However, because the survey has evolved significantly since its inception in 1993---with changes in sampling design, questionnaire structure, and variable naming---longitudinal analysis requires rigorous data cleaning and harmonization.
+The Viet Nam Household Living Standards Survey (VHLSS) is one of the most comprehensive and widely used micro-datasets for socio-economic research in Viet Nam. However, as the survey has evolved significantly since its inception in 1993 through changes in sampling design, questionnaire structure, and variable naming, longitudinal analysis requires rigorous data cleaning and harmonization.
 
-\textbf{The Purpose of this Book}
-
-This documentation was developed by the Development and Policies Research Center (DEPOCEN) to serve as a standardized guide for researchers and data analysts. Our goal is to ensure that the data cleaning process is:
+Through our work with this dataset, we noticed that while many researchers have cleaned and used the VHLSS, most work in isolation. This leads to inconsistent cleaning procedures and a narrow focus on specific modules. We encountered this same fragmentation even within our own team, and it is a challenge shared by the broader research community. Thus, this documentation was developed by the Development and Policies Research Center (DEPOCEN) to serve as a standardized guide for researchers and data analysts. Our goal is to ensure that the data cleaning process is:
 
 \begin{itemize}
 \tightlist
@@ -147,18 +159,32 @@ This documentation was developed by the Development and Policies Research Center
   Accessible: By centralizing metadata and harmonization crosswalks, we aim to reduce the ``entry barrier'' for new researchers using VHLSS.
 \end{itemize}
 
+\textbf{Who are we?}
+
+This codebook was developed by a research team at DEPOCEN, comprising \textbf{Tuong-Vy Phan, Huy Le Vu, and Nguyen Thi Hong Tram}, under the supervision of \textbf{Dr.~Anh Ngoc Nguyen}. We would like to express their gratitude to \textbf{Dr.~Doan Quang Hung} for providing the core variable list and to \textbf{Dr.~Vu Hoang Linh} for sharing the data-cleaning scripts for the consumption module.
+
+We are grateful for the comments and support of other DEPOCEN researchers, including Manh-Duc Doan, Quang-Thanh Tran, Nguyen Viet Lien, and Ha-My Bui.
+
 \textbf{Who is this for?}
+
 This guide is intended for economists, policy analysts, and students who are working with VHLSS microdata. We assume a basic understanding of statistical software (specifically Stata and R) and familiarity with household survey structures.
 
 \textbf{Structure of the Documentation}
-* Data Structure: An overview of the VHLSS history and sample design.
-* Cleaning Procedure: A step-by-step workflow for moving from raw files to a master harmonized dataset, with provided Stata code
-* Notes \& References: A collection of insights from the wider economic research community.
+
+\begin{itemize}
+\item
+  Data Structure: An overview of the VHLSS history and sample design.
+\item
+  Cleaning Procedure: A step-by-step workflow for moving from raw files to a master harmonized dataset, with provided Stata code.
+\item
+  Notes \& References: A collection of insights from the wider economic research community.
+\end{itemize}
 
 \textbf{Acknowledgements}
-We would like to thank the General Statistics Office (GSO) for their work in conducting these surveys and the various scholars whose previous notes on VHLSS provided the foundation for this consolidated procedure.
 
-\chapter{Overview}\label{overview}
+We would like to thank the \href{https://www.nso.gov.vn/en/homepage/}{General Statistics Office (GSO)} for their work in conducting these surveys and the various scholars whose previous notes on VHLSS provided the foundation for this consolidated procedure.
+
+\chapter{VHLSS Introduction}\label{vhlss-introduction}
 
 \section*{Purpose}\label{purpose}
 \addcontentsline{toc}{section}{Purpose}
@@ -191,7 +217,7 @@ Geographically, the survey covered the whole country. Scope of the survey includ
 
 Face-to-face interviews
 
-\chapter{Data Structure}\label{data-structure}
+\chapter{Dataset Basic Information}\label{dataset-basic-information}
 
 \section{Outline of the survey}\label{outline-of-the-survey}
 
@@ -202,7 +228,7 @@ Face-to-face interviews
 \item
   Section 2. Education
 \item
-  Section 3. Labour - Employment
+  Section 3. Labor - Employment
 \item
   Section 4. Health and health care
 \item
@@ -225,12 +251,26 @@ Face-to-face interviews
 
 \textbf{Sample Overview}
 
-\begin{itemize}
-\item
-  Sample size: 46,995 households
-\item
-  Number of survey areas: 3,133 areas (selected from the master sample of the 2019 Population and Housing Census, updated as needed)
-\end{itemize}
+\begin{table}[!h]
+\centering
+\caption{\label{tab:unnamed-chunk-1}Sample Size by Survey Year (households)}
+\centering
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{10em}>{\raggedright\arraybackslash}p{12em}>{\raggedright\arraybackslash}p{12em}>{\raggedright\arraybackslash}p{12em}}
+\toprule
+\cellcolor[HTML]{1a2980}{\textcolor{white}{\textbf{Year}}} & \cellcolor[HTML]{1a2980}{\textcolor{white}{\textbf{Total}}} & \cellcolor[HTML]{1a2980}{\textcolor{white}{\textbf{Income}}} & \cellcolor[HTML]{1a2980}{\textcolor{white}{\textbf{Expenditure}}}\\
+\midrule
+\ttfamily{\cellcolor{gray!10}{2008}} & \cellcolor{gray!10}{45.945} & \cellcolor{gray!10}{} & \cellcolor{gray!10}{9.189}\\
+\ttfamily{2010} & 69.360 &  & 9.399\\
+\ttfamily{\cellcolor{gray!10}{2012}} & \cellcolor{gray!10}{} & \cellcolor{gray!10}{} & \cellcolor{gray!10}{9.399}\\
+\ttfamily{2014} & 46.995 & 37.596 & 9.399\\
+\ttfamily{\cellcolor{gray!10}{2016}} & \cellcolor{gray!10}{46.995} & \cellcolor{gray!10}{37.596} & \cellcolor{gray!10}{9.399}\\
+\addlinespace
+\ttfamily{2018} & 46.995 & 37.596 & 9.399\\
+\ttfamily{\cellcolor{gray!10}{2020}} & \cellcolor{gray!10}{46.980} & \cellcolor{gray!10}{} & \cellcolor{gray!10}{}\\
+\bottomrule
+\multicolumn{4}{l}{\rule{0pt}{1em}\underline{\textit{Notes:}} Total: Total surveyed households; Income: Households were asked about income and other issues; Expenditure: Households were asked about income, expenditure and other issues}\\
+\end{tabular}
+\end{table}
 
 The sample for the the year \(t\) Residential Living Standards Survey (KSMS \(t\)) was designed in 2 steps as follows:
 
@@ -276,59 +316,43 @@ For newly selected areas:
   From these, select 15 main households and 5 reserve households
 \end{itemize}
 
-\section{Basic Statistics}\label{basic-statistics}
+\section{Rotating panel}\label{rotating-panel}
 
-\subsection*{Library}\label{library}
-\addcontentsline{toc}{subsection}{Library}
+The VHLSS uses a rotating panel design, allowing for the construction of a panel across three survey rounds (e.g., 2014-2016-2018), provided the data is based on the same Population and Housing Census sampling frame. For instance, the household systems from 2010 to 2018 were designed using the 2009 Census. However, since the 2020 VHLSS was based on the 2019 Census, it is not possible to create a panel linking VHLSS 2016-2018 with 2020.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{library}\NormalTok{(gt)}
-\FunctionTok{library}\NormalTok{(gtExtras)}
-\FunctionTok{library}\NormalTok{(summarytools)}
-\FunctionTok{library}\NormalTok{(haven)}
-\FunctionTok{library}\NormalTok{(sjlabelled)}
-\FunctionTok{library}\NormalTok{(webshot2)}
-\end{Highlighting}
-\end{Shaded}
+\section{Weight Data}\label{weight-data}
 
-\subsection*{Import data}\label{import-data}
-\addcontentsline{toc}{subsection}{Import data}
+At household level, each VHLSS will have a weihgt data for each year. Usually we would use \(wt9\), which is the weight of 9,000 household. There are also \(wt36\) and \(wt45\) is for file with 36,000 or 45,000 household.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{vhlss }\OtherTok{\textless{}{-}} \FunctionTok{read\_dta}\NormalTok{(}\StringTok{"clean/vhlss\_14\_18.dta"}\NormalTok{)}
+At individual level, we need to take the weight divided by the number of family member.
+\(\text{Weight individual} = \frac{\text{Weight household}}{\text{Houshold size}}\)
 
-\NormalTok{var\_to\_drop }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"tinh"}\NormalTok{, }\StringTok{"huyen"}\NormalTok{, }\StringTok{"xa"}\NormalTok{, }\StringTok{"diaban"}\NormalTok{, }\StringTok{"hoso"}\NormalTok{, }\StringTok{"gioitinh"}\NormalTok{, }\StringTok{"dantoc"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\chapter{Data Processing Procedure}\label{data-processing-procedure}
 
-\subsection*{Summary statistics}\label{summary-statistics}
-\addcontentsline{toc}{subsection}{Summary statistics}
+Analyzing the VHLSS longitudinally presents challenges due to structural design changes, administrative adjustments, and varying module contents. This section outlines these inconsistencies and our strategies for data harmonization. For this version, we utilize the 9,000-household sample to construct a pooled individual-level dataset, focusing on a specific subset of variables.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{source}\NormalTok{(}\StringTok{"script/gt\_summarytools.R"}\NormalTok{)}
+The following sections provide a step-by-step guide to navigating this documentation.
 
-\NormalTok{vhlss }\OtherTok{\textless{}{-}}\NormalTok{ vhlss }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{head}\NormalTok{(}\DecValTok{9399}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric)) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{any\_of}\NormalTok{(var\_to\_drop)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{everything}\NormalTok{(), }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(.x }\SpecialCharTok{\textless{}} \DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, .x))) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{copy\_labels}\NormalTok{(vhlss)}
-\end{Highlighting}
-\end{Shaded}
+\section{Folder organization}\label{folder-organization}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{gt\_summarytools}\NormalTok{(}\AttributeTok{data =}\NormalTok{ vhlss, }\AttributeTok{title =} \StringTok{"VHLSS 2014{-}2018 Data Summary"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+The folder contains data, do file and other materials are organized as follows:
 
-\chapter{Cleaning Procedure}\label{cleaning-procedure}
+\begin{table}[!h]
+\centering
+\begin{tabular}{>{}lll}
+\toprule
+\textbf{Sub-folder} & \textbf{Description} & \textbf{Action}\\
+\midrule
+\ttfamily{\cellcolor{gray!10}{01\_dofiles}} & \cellcolor{gray!10}{Code in Stata to clean the datasets} & \cellcolor{gray!10}{Run master.do only to modify cleaning}\\
+\ttfamily{02\_data} & Raw dataset in Stata (.dta) format & Do not modify\\
+\ttfamily{\cellcolor{gray!10}{03\_temp}} & \cellcolor{gray!10}{Temporary files} & \cellcolor{gray!10}{Do not modify}\\
+\ttfamily{04\_clean} & Cleaned data in Stata (.dta) format & Download and use\\
+\ttfamily{\cellcolor{gray!10}{05\_metadata}} & \cellcolor{gray!10}{Questionnaire and codebook} & \cellcolor{gray!10}{Access questionnaire and codebook here}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Below is the code used to clean VHLSS 2014 to 2018 at household level
+After organizing folder, first thing we need to do is clear all settings and set working directory.
 
 \section{Clear all settings}\label{clear-all-settings}
 
@@ -344,137 +368,164 @@ Below is the code used to clean VHLSS 2014 to 2018 at household level
 
 \section{Set Working Directory}\label{set-working-directory}
 
-Replace username and path to your folder
+Replace username and path to your folder.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{if} \StringTok{"\textasciigrave{}c(username)\textquotesingle{}"}\NormalTok{ == }\StringTok{"XXX"}\NormalTok{ \{}
 \NormalTok{gl MyProject }\StringTok{"/Users/XXX/My Drive/DEPOCEN {-} VHLSS Data cleaning"}
-\NormalTok{    gl }\KeywordTok{data} \StringTok{"$MyProject/data"}
-\NormalTok{    gl }\KeywordTok{clean} \StringTok{"$MyProject/clean"}
-\NormalTok{    gl temp  }\StringTok{"$MyProject/temp"}
+\NormalTok{    gl }\KeywordTok{data} \StringTok{"$MyProject/02\_data"}
+\NormalTok{    gl temp  }\StringTok{"$MyProject/03\_temp"}
+\NormalTok{    gl }\KeywordTok{clean} \StringTok{"$MyProject/04\_clean"}
+\NormalTok{    gl metadata }\StringTok{"$MyProject/05\_metadata"}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \section{Clean data for each year}\label{clean-data-for-each-year}
 
-\subsection{Make sure each file is uniquely defined}\label{make-sure-each-file-is-uniquely-defined}
+\subsection*{Make sure each file is uniquely defined}\label{make-sure-each-file-is-uniquely-defined}
+\addcontentsline{toc}{subsection}{Make sure each file is uniquely defined}
+
+As each survey year consists of multiple section-specific files, we must ensure all observations are uniquely identified prior to merging.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{forval i = 14 (2) 18 \{}
-    \KeywordTok{foreach} \FunctionTok{m} \KeywordTok{in}\NormalTok{ Ho1 Ho2 Ho3 Ho4 \{}
-        \KeywordTok{use} \StringTok{"$data/VHLSS\_20\textasciigrave{}i\textquotesingle{}/hhold/\textasciigrave{}m\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{clear}
-        \KeywordTok{duplicates} \KeywordTok{drop}\NormalTok{ tinh huyen xa diaban hoso, }\KeywordTok{force}
-        \KeywordTok{tempfile}\NormalTok{ uniq\_}\OtherTok{\textasciigrave{}m\textquotesingle{}}\NormalTok{\_20}\OtherTok{\textasciigrave{}i\textquotesingle{}}
-        \KeywordTok{save} \OtherTok{\textasciigrave{}uniq\_\textasciigrave{}m\textquotesingle{}}\NormalTok{\_20}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}, }\KeywordTok{replace}
+    \KeywordTok{foreach} \FunctionTok{m} \KeywordTok{in}\NormalTok{ Muc1A Muc2A Muc2X Muc3A Muc3C Muc4a \{}
+        \KeywordTok{local}\NormalTok{ filepath }\StringTok{"$data/vhlss\_20\textasciigrave{}i\textquotesingle{}/hh\_9000/\textasciigrave{}m\textquotesingle{}.dta"}
+        \KeywordTok{capture} \KeywordTok{confirm}\NormalTok{ file }\StringTok{"\textasciigrave{}filepath\textquotesingle{}"}
+        \KeywordTok{if} \DataTypeTok{\_rc}\NormalTok{ == 0 \{}
+            \KeywordTok{use} \StringTok{"\textasciigrave{}filepath\textquotesingle{}"}\NormalTok{, }\KeywordTok{clear}
+            \KeywordTok{if}\NormalTok{ \_N \textgreater{} 0 \{}
+                \KeywordTok{duplicates} \KeywordTok{drop}\NormalTok{ tinh huyen xa diaban hoso matv, }\KeywordTok{force}
+                \KeywordTok{tempfile}\NormalTok{ uniq\_}\OtherTok{\textasciigrave{}m\textquotesingle{}}\NormalTok{\_20}\OtherTok{\textasciigrave{}i\textquotesingle{}}
+                \KeywordTok{save} \OtherTok{\textasciigrave{}uniq\_\textasciigrave{}m\textquotesingle{}}\NormalTok{\_20}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}, }\KeywordTok{replace}
+\NormalTok{            \}}
+\NormalTok{        \}}
 \NormalTok{    \}}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Merge household file}\label{merge-household-file}
+\subsection*{Merge individual file}\label{merge-individual-file}
+\addcontentsline{toc}{subsection}{Merge individual file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{forval i = 14 (2) 18 \{}
-    \KeywordTok{use} \OtherTok{\textasciigrave{}uniq\_Ho1\_20\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}, }\KeywordTok{clear}
-    \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \OtherTok{\textasciigrave{}uniq\_Ho2\_20\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
-    \KeywordTok{drop} \DataTypeTok{\_merge}
-
-    \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \OtherTok{\textasciigrave{}uniq\_Ho3\_20\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
-    \KeywordTok{drop} \DataTypeTok{\_merge} 
-
-    \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \OtherTok{\textasciigrave{}uniq\_Ho4\_20\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
-    \KeywordTok{drop} \DataTypeTok{\_merge}
-
-    \KeywordTok{save} \StringTok{"$temp/ho\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{replace}
+    \KeywordTok{use} \OtherTok{\textasciigrave{}uniq\_Muc1A\_20\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}, }\KeywordTok{clear}
+        \KeywordTok{foreach} \FunctionTok{m} \KeywordTok{in}\NormalTok{ Muc2A Muc2X Muc3A Muc3C Muc4a \{}
+            \KeywordTok{capture} \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso matv }\KeywordTok{using} \OtherTok{\textasciigrave{}uniq\_\textasciigrave{}m\textquotesingle{}}\NormalTok{\_20}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
+            \KeywordTok{capture} \KeywordTok{drop} \KeywordTok{if}\NormalTok{ \_m == 2}
+            \KeywordTok{capture} \KeywordTok{drop}\NormalTok{ \_m}
+\NormalTok{        \}}
+    \KeywordTok{save} \StringTok{"$temp/individual\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{replace}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Generate variables}\label{generate-variables}
+\subsection*{Extract variables from household file}\label{extract-variables-from-household-file}
+\addcontentsline{toc}{subsection}{Extract variables from household file}
+
+These variables do not appear in individual file, so we need to take them from household file.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{forval i = 14 (2) 18 \{}
-    \KeywordTok{use} \StringTok{"$data/VHLSS\_20\textasciigrave{}i\textquotesingle{}/hhold/Muc1A.dta"}\NormalTok{, }\KeywordTok{clear}
-    \KeywordTok{keep} \KeywordTok{if}\NormalTok{ m1ac3 == 1 }\CommentTok{// keep if that individual is household head}
-    \KeywordTok{keep}\NormalTok{ tinh huyen xa diaban hoso m1ac2 m1ac5}
+    \KeywordTok{use} \StringTok{"$data/vhlss\_20\textasciigrave{}i\textquotesingle{}/hh\_9000/Ho1.dta"}\NormalTok{, }\KeywordTok{clear}
+    \KeywordTok{keep}\NormalTok{ tinh huyen xa diaban hoso ttnt dantoc tsnguoi }\CommentTok{// take area, ethnic and household size variable}
     \KeywordTok{duplicates} \KeywordTok{drop}\NormalTok{ tinh huyen xa diaban hoso, }\KeywordTok{force}
-        \CommentTok{// Gender of household head}
-    \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \StringTok{"$temp/ho\_20\textasciigrave{}i\textquotesingle{}.dta"}
-    \KeywordTok{keep} \KeywordTok{if}\NormalTok{ \_m == 3}
-    \KeywordTok{drop}\NormalTok{ \_m}
-        \CommentTok{// Total expenditure}
-    \KeywordTok{egen}\NormalTok{ tongchi\_01 = }\FunctionTok{rowtotal}\NormalTok{(chisxkd\_1 chisxkd\_2 chisxkd\_3 chisxkd\_4 chisxkd\_5 chisxkd\_6 chisxkd\_7 chisxkd\_8 chikhac\_1 chikhac\_2 chikhac\_3 chikhac\_4 chikhac\_5 chikhac\_6 chikhac\_7 chikhac\_8 chikhac\_9)}
-    \KeywordTok{save} \StringTok{"$temp/ho\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{replace}
+    
+    \KeywordTok{tempfile}\NormalTok{ indiv1\_}\OtherTok{\textasciigrave{}i\textquotesingle{}}
+    \KeywordTok{save} \OtherTok{\textasciigrave{}indiv1\_\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
+    
+    \KeywordTok{use} \StringTok{"$data/vhlss\_20\textasciigrave{}i\textquotesingle{}/hh\_9000/Muc5a1.dta"}\NormalTok{, }\KeywordTok{clear}
+    \KeywordTok{keep}\NormalTok{ tinh huyen xa diaban hoso m5a1ma m5a1c2a m5a1c2b m5a1c3a m5a1c3b }\CommentTok{// take food consumption variabls}
+    \KeywordTok{duplicates} \KeywordTok{drop}\NormalTok{ tinh huyen xa diaban hoso, }\KeywordTok{force}
+    
+    \KeywordTok{tempfile}\NormalTok{ indiv2\_}\OtherTok{\textasciigrave{}i\textquotesingle{}}
+    \KeywordTok{save} \OtherTok{\textasciigrave{}indiv2\_\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
+    
+    \KeywordTok{use} \StringTok{"$data/vhlss\_20\textasciigrave{}i\textquotesingle{}/hh\_9000/Muc5a2.dta"}\NormalTok{, }\KeywordTok{clear}
+    \KeywordTok{keep}\NormalTok{ tinh huyen xa diaban hoso m5a2ma m5a2c2a m5a2c2b }\CommentTok{// take food consumption variabls}
+    \KeywordTok{duplicates} \KeywordTok{drop}\NormalTok{ tinh huyen xa diaban hoso, }\KeywordTok{force}
+    \KeywordTok{destring}\NormalTok{ m5a2ma, }\KeywordTok{replace}
+    
+    \KeywordTok{tempfile}\NormalTok{ indiv3\_}\OtherTok{\textasciigrave{}i\textquotesingle{}}
+    \KeywordTok{save} \OtherTok{\textasciigrave{}indiv3\_\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
+    
+    \KeywordTok{use} \StringTok{"$temp/individual\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{clear}
+\NormalTok{        forval j = 1/3 \{}
+            \KeywordTok{merge} \FunctionTok{m}\NormalTok{:1 tinh huyen xa diaban hoso }\KeywordTok{using} \OtherTok{\textasciigrave{}indiv\textasciigrave{}j\textquotesingle{}}\NormalTok{\_}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{\textquotesingle{}}
+            \KeywordTok{drop} \KeywordTok{if}\NormalTok{ \_m == 2}
+            \KeywordTok{drop}\NormalTok{ \_m}
+\NormalTok{        \}}
+    \KeywordTok{save} \StringTok{"$temp/individual\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{replace}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Take variables from individual file}\label{take-variables-from-individual-file}
+\subsection*{Label define all variables}\label{label-define-all-variables}
+\addcontentsline{toc}{subsection}{Label define all variables}
 
-These variables do not have in household file, so we need to take them from individual file
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{use} \StringTok{"$data/VHLSS\_2014/hhold/Muc3C.dta"}\NormalTok{, }\KeywordTok{clear}
-  \KeywordTok{collapse}\NormalTok{ (}\KeywordTok{sum}\NormalTok{) m3c11 m3c13 m3c14 m3c15, }\KeywordTok{by}\NormalTok{(tinh huyen xa diaban hoso)}
-  \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \StringTok{"$temp/ho\_2014.dta"}
-  \KeywordTok{drop}\NormalTok{ \_m}
-\KeywordTok{save} \StringTok{"$temp/ho\_2014.dta"}\NormalTok{, }\KeywordTok{replace}
-    
-\KeywordTok{use} \StringTok{"$data/VHLSS\_2014/hhold/Muc3B.dta"}\NormalTok{, }\KeywordTok{clear}
-    \KeywordTok{collapse}\NormalTok{ (}\KeywordTok{sum}\NormalTok{) m3c5b m3c6b, }\KeywordTok{by}\NormalTok{(tinh huyen xa diaban hoso)}
-    \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \StringTok{"$temp/ho\_2014.dta"}
-    \KeywordTok{drop}\NormalTok{ \_m}
-\KeywordTok{save} \StringTok{"$temp/ho\_2014.dta"}\NormalTok{, }\KeywordTok{replace}
-    
-\KeywordTok{use} \StringTok{"$data/VHLSS\_2014/hhold/Muc7.dta"}\NormalTok{, }\KeywordTok{clear}
-    \KeywordTok{keep}\NormalTok{ tinh huyen xa diaban hoso m7c1 m7c2 m7c8 m7c17}
-    \KeywordTok{merge}\NormalTok{ 1:1 tinh huyen xa diaban hoso }\KeywordTok{using} \StringTok{"$temp/ho\_2014.dta"}
-    \KeywordTok{drop}\NormalTok{ \_m}
-\KeywordTok{save} \StringTok{"$temp/ho\_2014.dta"}\NormalTok{, }\KeywordTok{replace}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Create panal data}\label{create-panal-data}
-
-\subsection{Import the meta data}\label{import-the-meta-data}
-
-Since same variable can have different name in each year, we need to change them into 1 name to append together. This metadata will be used to rename, keep and label all wanted variables.
+Due to the legacy GSO encoding used in the raw data, we converted the character sets into a readable format. Specifically, we extracted the correct value labels for all variables of interest into a separate do-file, which is then executed within the master script.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{import delimited }\StringTok{"$data/VHLSS\_codebook\_9k {-} ho.csv"}\NormalTok{, varnames(1) encoding(UTF{-}8) }\KeywordTok{clear}
+\NormalTok{forval i = 14 (2) 18 \{}
+    \KeywordTok{use} \StringTok{"$temp/individual\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{clear}
+    
+    \CommentTok{// Run the fixed labels}
+    \KeywordTok{do} \StringTok{"$temp/vhlss\_labels\_fixed.do"}
+    
+    \CommentTok{// Automatically attach labels to variables with the same name}
+    \KeywordTok{foreach}\NormalTok{ v }\KeywordTok{of} \KeywordTok{varlist} \DataTypeTok{\_all}\NormalTok{ \{}
+        \KeywordTok{capture} \KeywordTok{label} \KeywordTok{values} \OtherTok{\textasciigrave{}v\textquotesingle{}} \OtherTok{\textasciigrave{}v\textquotesingle{}}
+\NormalTok{    \}}
+    
+    \KeywordTok{save} \StringTok{"$temp/individual\_20\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{replace}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Rename and label code}\label{rename-and-label-code}
+\section{Append individual dataset}\label{append-individual-dataset}
+
+\subsection*{Import the meta data}\label{import-the-meta-data}
+\addcontentsline{toc}{subsection}{Import the meta data}
+
+Variable names and the ordering of questions frequently change between survey waves. For instance, the variable for \texttt{education} may be coded as \emph{m2ac2a} in one year and \emph{m2xc2a} in another. To facilitate analysis, we have compiled comprehensive metadata mapping variable names and labels for each year, which is available in the \texttt{05\_metadata/VHLSS\_codebook\_9k\_thanhvien\ -\ thanhvien.csv}. This dataset is restricted to variables of interest. To add further variables, download the \href{https://docs.google.com/spreadsheets/d/1zyGJARgK3_1daXMCwZtn-5dU-kDYZ0_u3rRJUfMP8xQ/edit?usp=sharing}{metadata} and ensure all new variables are harmonized to account for naming inconsistencies across years.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{import delimited }\StringTok{"$metadata/VHLSS\_codebook\_9k\_thanhvien {-} thanhvien.csv"}\NormalTok{, varnames(1) encoding(UTF{-}8) }\KeywordTok{clear}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Rename and label code}\label{rename-and-label-code}
+\addcontentsline{toc}{subsection}{Rename and label code}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{local} \KeywordTok{N}\NormalTok{ = \_N}
 
 \NormalTok{forval i = 2014 (2) 2018 \{}
-    \CommentTok{// Open file to write}
-\NormalTok{    file open myfile }\KeywordTok{using} \StringTok{\textasciigrave{}"}\OtherTok{$temp}\NormalTok{/label}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{.do}\StringTok{"\textquotesingle{}, write text replace}
+    \CommentTok{// Open file}
+\NormalTok{    file open myfile }\KeywordTok{using} \StringTok{\textasciigrave{}"}\OtherTok{$temp}\NormalTok{/label\_in}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{.do}\StringTok{"\textquotesingle{}, write text replace}
 \StringTok{    }
 \StringTok{    local renamed\_vars ""}
 \StringTok{    forval iii = 1/\textasciigrave{}N\textquotesingle{} \{}
 \StringTok{        local vvvcode = code[\textasciigrave{}iii\textquotesingle{}]}
-\StringTok{        local vvv\_i = code\_\textasciigrave{}i\textquotesingle{}[\textasciigrave{}iii\textquotesingle{}]  // Chuyển từ vvv\textasciigrave{}i\textquotesingle{} thành vvv\_i để tránh lỗi cú pháp}
+\StringTok{        local vvv\_i = code\_\textasciigrave{}i\textquotesingle{}[\textasciigrave{}iii\textquotesingle{}]}
 \StringTok{        local v\_desc = description[\textasciigrave{}iii\textquotesingle{}]}
 \StringTok{        }
 \StringTok{        // Check if code\_\textasciigrave{}i\textquotesingle{} is not empty}
 \StringTok{        if \textasciigrave{}"}\OtherTok{\textasciigrave{}vvv\_i\textquotesingle{}}\StringTok{"\textquotesingle{} != "" \{}
-\StringTok{                  // Create the Rename command}
+\StringTok{                // 1. Create the Rename command}
 \StringTok{            local result = \textasciigrave{}"}\NormalTok{ren }\OtherTok{\textasciigrave{}vvv\_i\textquotesingle{}} \OtherTok{\textasciigrave{}vvvcode\textquotesingle{}}\StringTok{"\textquotesingle{}}
 \StringTok{            file write myfile \textasciigrave{}"}\OtherTok{\textasciigrave{}result\textquotesingle{}}\StringTok{"\textquotesingle{} \_n}
 \StringTok{                }
-\StringTok{                  // Create the Label command}
+\StringTok{                // 2. Create the Label command}
 \StringTok{            local lab\_cmd \textasciigrave{}"}\NormalTok{label }\KeywordTok{variable} \OtherTok{\textasciigrave{}vvvcode\textquotesingle{}} \StringTok{\textasciigrave{}"}\OtherTok{\textasciigrave{}v\_desc\textquotesingle{}}\StringTok{"\textquotesingle{}"}\NormalTok{\textquotesingle{}}
 \NormalTok{            file write myfile }\StringTok{\textasciigrave{}"}\OtherTok{\textasciigrave{}lab\_cmd\textquotesingle{}}\StringTok{"\textquotesingle{} \_n}
 \StringTok{            }
@@ -482,8 +533,8 @@ Since same variable can have different name in each year, we need to change them
 \StringTok{        \}}
 \StringTok{    \}}
 \StringTok{    file write myfile \textasciigrave{}"}\NormalTok{keep}\OtherTok{\textasciigrave{}renamed\_vars\textquotesingle{}}\StringTok{"\textquotesingle{} }
-\StringTok{  }
-\StringTok{    // Close file}
+
+\StringTok{    // close file}
 \StringTok{    file close myfile}
 \StringTok{\}}
 \end{Highlighting}
@@ -491,19 +542,19 @@ Since same variable can have different name in each year, we need to change them
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{clear}
+\KeywordTok{clear} \OtherTok{all}
 
 \KeywordTok{tempfile}\NormalTok{ combined\_data}
 \KeywordTok{save} \OtherTok{\textasciigrave{}combined\_data\textquotesingle{}}\NormalTok{, emptyok}
 
 \NormalTok{forval i = 2014 (2) 2018 \{}
     \CommentTok{// Use file corresponding to each year}
-    \KeywordTok{use} \StringTok{"$temp/ho\_\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{clear}
+    \KeywordTok{use} \StringTok{"$temp/individual\_\textasciigrave{}i\textquotesingle{}.dta"}\NormalTok{, }\KeywordTok{clear}
 
     \CommentTok{// Run file .do corresponding to each year}
-    \KeywordTok{do} \StringTok{\textasciigrave{}"}\OtherTok{$temp}\NormalTok{/label}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{.do}\StringTok{"\textquotesingle{}}
-\StringTok{      }
-\StringTok{      gen year = \textasciigrave{}i\textquotesingle{}}
+    \KeywordTok{do} \StringTok{\textasciigrave{}"}\OtherTok{$temp}\NormalTok{/label\_in}\OtherTok{\textasciigrave{}i\textquotesingle{}}\NormalTok{.do}\StringTok{"\textquotesingle{}}
+\StringTok{    }
+\StringTok{    gen year = \textasciigrave{}i\textquotesingle{}}
 
 \StringTok{    // Append data to initially created file}
 \StringTok{    append using \textasciigrave{}combined\_data\textquotesingle{}}
@@ -511,30 +562,167 @@ Since same variable can have different name in each year, we need to change them
 \StringTok{    save \textasciigrave{}combined\_data\textquotesingle{}, replace}
 \StringTok{\}}
 
-\StringTok{save "}\OtherTok{$clean}\NormalTok{/vhlss\_14\_18.dta}\StringTok{", replace}
+\StringTok{save "}\OtherTok{$temp}\NormalTok{/vhlss\_individual\_14\_18.dta}\StringTok{", replace}
 \end{Highlighting}
 \end{Shaded}
-
-\chapter{Important note during cleaning}\label{important-note-during-cleaning}
-
-\section{Linking VHLSSs}\label{linking-vhlsss}
-
-VHLSS is a rotating panel dataset. It is possible to construct a panel across three survey rounds (e.g., 2014-2016-2018) if the data is designed based on the same Population and Housing Census. For instance, the household system from 2010 to 2018 was designed from the 2009--2010 Census. However, because VHLSS 2020 was designed based on the 2019 Census, it is not possible to create a panel linking VHLSS 2016--2018 with 2020.
 
 \section{Inconsistent province codes}\label{inconsistent-province-codes}
 
 As many users of Vietnamese data know, the number of provinces has changed significantly since the late 1980s. In most cases the changing of provincial boundaries was either a splitting or aggregating of existing provinces as opposed to districts being reallocated between provinces. The province codes also change within surveys and across data sources.
 
-\section{Inconsistent industry codes}\label{inconsistent-industry-codes}
+All province codes in this processed dataset are consistent across years. The implementation of this standardization can be found in \href{https://sites.google.com/site/briandmccaig/notes-on-vhlsss}{Brian McCaig's website}.
 
-VSIC1993 is the basis of industry codes used in the 2002 through 2006 VHLSSs, the 2000 through 2007 enterprise data, and the 1999 population census. VSIC2007 is used in the 2008 through 2018 VHLSSs, the 2008 through 2017 enterprise data, and the 2009 population census. VSIC2018 is used in the 2019 population census.
+\section{Generate new variables}\label{generate-new-variables}
 
-\section{Weight Data}\label{weight-data}
+Below are variables of interest that we create for our research purpose
 
-At household level, each VHLSS will have a weihgt data for each year. Usually we would use \(wt9\), which is the weight of 9,000 household. There are also \(wt36\) and \(wt45\) is for file with 36,000 or 45,000 household.
+\subsection*{Education}\label{education}
+\addcontentsline{toc}{subsection}{Education}
 
-At individual level, we need to take the weight divided by the number of family member.
-\(\text{Weight individual} = \frac{\text{Weight household}}{\text{Houshold size}}\)
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gen}\NormalTok{ education = 0 }\KeywordTok{if}\NormalTok{ general\_edu == 0 \& vocational\_edu == 0}
+\KeywordTok{replace}\NormalTok{ education = 1 }\KeywordTok{if}\NormalTok{ general\_edu == 1}
+\KeywordTok{replace}\NormalTok{ education = 2 }\KeywordTok{if}\NormalTok{ general\_edu == 2}
+\KeywordTok{replace}\NormalTok{ education = 3 }\KeywordTok{if}\NormalTok{ general\_edu == 3}
+\KeywordTok{replace}\NormalTok{ education = 4 }\KeywordTok{if}\NormalTok{ vocational\_edu == 4}
+\KeywordTok{replace}\NormalTok{ education = 5 }\KeywordTok{if}\NormalTok{ vocational\_edu == 5}
+\KeywordTok{replace}\NormalTok{ education = 6 }\KeywordTok{if}\NormalTok{ vocational\_edu == 6}
+\KeywordTok{replace}\NormalTok{ education = 7 }\KeywordTok{if}\NormalTok{ vocational\_edu == 7}
+\KeywordTok{replace}\NormalTok{ education = 8 }\KeywordTok{if}\NormalTok{ general\_edu == 8}
+\KeywordTok{replace}\NormalTok{ education = 9 }\KeywordTok{if}\NormalTok{ general\_edu == 9}
+\KeywordTok{replace}\NormalTok{ education = 10 }\KeywordTok{if}\NormalTok{ general\_edu == 10}
+\KeywordTok{replace}\NormalTok{ education = 11 }\KeywordTok{if}\NormalTok{ general\_edu == 11}
+\KeywordTok{replace}\NormalTok{ education = 12 }\KeywordTok{if}\NormalTok{ general\_edu == 12}
+
+\NormalTok{lab }\KeywordTok{var}\NormalTok{ education }\StringTok{"Bằng cấp cao nhất"}
+\NormalTok{lab def education\_lbl 0 }\StringTok{"Không có bằng cấp"} \CommentTok{///}
+\NormalTok{                  1 }\StringTok{"Tiểu học"} \CommentTok{///}
+\NormalTok{                  2 }\StringTok{"THCS"} \CommentTok{///}
+\NormalTok{                  3 }\StringTok{"THPT"} \CommentTok{///}
+\NormalTok{                  4 }\StringTok{"Sơ cấp nghề"} \CommentTok{///}
+\NormalTok{                  5 }\StringTok{"Trung cấp nghề"} \CommentTok{///}
+\NormalTok{                  6 }\StringTok{"Trung học chuyên nghiệp"} \CommentTok{///}
+\NormalTok{                  7 }\StringTok{"Cao đẳng nghề"} \CommentTok{///}
+\NormalTok{                  8 }\StringTok{"Cao đẳng"} \CommentTok{///}
+\NormalTok{                  9 }\StringTok{"Đại học"} \CommentTok{///}
+\NormalTok{                  10 }\StringTok{"Thạc sĩ"} \CommentTok{///}
+\NormalTok{                  11 }\StringTok{"Tiến sĩ"} \CommentTok{///}
+\NormalTok{                  12 }\StringTok{"Khác"}
+\NormalTok{lab val education education\_lbl}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Total income}\label{total-income}
+\addcontentsline{toc}{subsection}{Total income}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{foreach} \FunctionTok{m} \KeywordTok{in}\NormalTok{ wage\_1 holiday\_bonus\_1 bonus\_1 wage\_2 holiday\_bonus\_2 bonus\_2 \{}
+    \KeywordTok{replace} \OtherTok{\textasciigrave{}m\textquotesingle{}}\NormalTok{ = 0 }\KeywordTok{if} \FunctionTok{missing}\NormalTok{(}\OtherTok{\textasciigrave{}m\textquotesingle{}}\NormalTok{)}
+\NormalTok{\}}
+
+\KeywordTok{egen}\NormalTok{ income = }\FunctionTok{rowtotal}\NormalTok{(wage\_1 holiday\_bonus\_1 bonus\_1 wage\_2 holiday\_bonus\_2 bonus\_2)}
+\KeywordTok{replace}\NormalTok{ income = . }\KeywordTok{if}\NormalTok{ income == 0}
+
+\NormalTok{lab }\KeywordTok{var}\NormalTok{ income }\StringTok{"Tổng thu nhập từ tất cả các nguồn (tiền lương, tiền thưởng, phụ cấp, etc.) trong 12 tháng qua"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Food consumption}\label{food-consumption}
+\addcontentsline{toc}{subsection}{Food consumption}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \CommentTok{// holiday consumption}
+\KeywordTok{egen}\NormalTok{ quant\_h = }\FunctionTok{rowtotal}\NormalTok{(food\_cons1\_q food\_cons2\_q)}
+\KeywordTok{egen}\NormalTok{ values\_h = }\FunctionTok{rowtotal}\NormalTok{(food\_cons1\_p food\_cons2\_p)}
+
+    \CommentTok{// daily consumption}
+\KeywordTok{ren}\NormalTok{ (food\_cons3\_q food\_cons3\_p) (quant\_d values\_d)}
+    
+    \CommentTok{// total consumption}
+\KeywordTok{foreach} \FunctionTok{m} \KeywordTok{in}\NormalTok{ quant\_d quant\_h values\_d values\_h \{}
+    \KeywordTok{replace} \OtherTok{\textasciigrave{}m\textquotesingle{}}\NormalTok{ = 0 }\KeywordTok{if} \OtherTok{\textasciigrave{}m\textquotesingle{}}\NormalTok{ == .}
+\NormalTok{\}}
+
+\KeywordTok{gen}\NormalTok{ food\_quant = quant\_d*350/30+quant\_h}
+\KeywordTok{gen}\NormalTok{ food\_values = values\_d*350/30+values\_h}
+
+\NormalTok{lab }\KeywordTok{var}\NormalTok{ food\_quant }\StringTok{"Số lượng thực phẩm tiêu thụ (kg)"}
+\NormalTok{lab }\KeywordTok{var}\NormalTok{ food\_values }\StringTok{"Trị giá thực phẩm tiêu thụ (nghìn đồng)"}
+
+\KeywordTok{drop}\NormalTok{ quant\_* values\_*}
+
+\KeywordTok{save} \StringTok{"$clean/vhlss\_individual\_14\_18.dta"}\NormalTok{, }\KeywordTok{replace}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Summary Statistics (of processed data)}\label{summary-statistics-of-processed-data}
+
+\section*{Library}\label{library}
+\addcontentsline{toc}{section}{Library}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(gt)}
+\FunctionTok{library}\NormalTok{(gtExtras)}
+\FunctionTok{library}\NormalTok{(summarytools)}
+\FunctionTok{library}\NormalTok{(haven)}
+\FunctionTok{library}\NormalTok{(sjlabelled)}
+\FunctionTok{library}\NormalTok{(webshot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Import data}\label{import-data}
+\addcontentsline{toc}{section}{Import data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vhlss }\OtherTok{\textless{}{-}} \FunctionTok{read\_dta}\NormalTok{(}\StringTok{"clean/vhlss\_individual\_14\_18.dta"}\NormalTok{)}
+
+\NormalTok{var\_to\_drop }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"tinh"}\NormalTok{, }\StringTok{"huyen"}\NormalTok{, }\StringTok{"xa"}\NormalTok{, }\StringTok{"diaban"}\NormalTok{, }\StringTok{"hoso"}\NormalTok{, }\StringTok{"gioitinh"}\NormalTok{, }\StringTok{"dantoc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Summary statistics}\label{summary-statistics}
+\addcontentsline{toc}{section}{Summary statistics}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"script/gt\_summarytools.R"}\NormalTok{)}
+
+\NormalTok{vhlss }\OtherTok{\textless{}{-}}\NormalTok{ vhlss }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{any\_of}\NormalTok{(var\_to\_drop)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{everything}\NormalTok{(), }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(.x }\SpecialCharTok{\textless{}} \DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, .x))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{copy\_labels}\NormalTok{(vhlss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gt\_summarytools}\NormalTok{(}\AttributeTok{data =}\NormalTok{ vhlss, }\AttributeTok{title =} \StringTok{"VHLSS 2014{-}2018 Data Summary"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Reference}\label{reference}
+
+VHLSS is a popular dataset and has been used by many scholars. Here are some of the notes from other economists that we should read:
+
+\begin{itemize}
+\tightlist
+\item
+  Notes on Vietnamese data by \href{https://sites.google.com/site/briandmccaig/notes-on-vhlsss}{Brain McCaig}
+\item
+  Data and Rscript sharing by \href{https://sites.google.com/tmu.edu.vn/huongtrinhthi/data-and-rscript-sharing}{Trinh Thi Huong}
+\item
+  Notes on Vietnamese Microdata by \href{https://rpubs.com/lananhh269/notesonvnmdata}{Lan Anh Ngo}
+\item
+  Gaps in Household Income From VHLSS 2018 by \href{https://rpubs.com/chidungkt/789118}{Nguyen Chi Dung}
+\end{itemize}
 
   \bibliography{book.bib,packages.bib}
 

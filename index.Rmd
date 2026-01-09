@@ -1,6 +1,6 @@
---- 
-title: "VHLSS Cleaning Procedure"
-author: "Tuong-Vy Phan, Nguyen Thi Hong Tram & Huy Le Vu"
+---
+title: "Viet Nam Household Living Standards Survey Codebook"
+author: "Development and Policies Research Center (DEPOCEN)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -16,25 +16,34 @@ github-repo: rstudio/bookdown-demo
 ---
 
 # Preface {-}
-The Viet Nam Household Living Standards Survey (VHLSS) is one of the most comprehensive and widely used micro-datasets for socio-economic research in Viet Nam. However, because the survey has evolved significantly since its inception in 1993—with changes in sampling design, questionnaire structure, and variable naming—longitudinal analysis requires rigorous data cleaning and harmonization.
+The Viet Nam Household Living Standards Survey (VHLSS) is one of the most comprehensive and widely used micro-datasets for socio-economic research in Viet Nam. However, as the survey has evolved significantly since its inception in 1993 through changes in sampling design, questionnaire structure, and variable naming, longitudinal analysis requires rigorous data cleaning and harmonization.
 
-**The Purpose of this Book**
-
-This documentation was developed by the Development and Policies Research Center (DEPOCEN) to serve as a standardized guide for researchers and data analysts. Our goal is to ensure that the data cleaning process is:
+Through our work with this dataset, we noticed that while many researchers have cleaned and used the VHLSS, most work in isolation. This leads to inconsistent cleaning procedures and a narrow focus on specific modules. We encountered this same fragmentation even within our own team, and it is a challenge shared by the broader research community. Thus, this documentation was developed by the Development and Policies Research Center (DEPOCEN) to serve as a standardized guide for researchers and data analysts. Our goal is to ensure that the data cleaning process is:
 
 * Reproducible: All steps are scripted to ensure consistency.
 * Transparent: Every decision regarding outliers, missing values, and variable merging is documented.
 * Accessible: By centralizing metadata and harmonization crosswalks, we aim to reduce the "entry barrier" for new researchers using VHLSS.
 
+**Who are we?**
+
+This codebook was developed by a research team at DEPOCEN, comprising **Tuong-Vy Phan, Huy Le Vu, and Nguyen Thi Hong Tram**, under the supervision of **Dr. Anh Ngoc Nguyen**. We would like to express their gratitude to **Dr. Doan Quang Hung** for providing the core variable list and to **Dr. Vu Hoang Linh** for sharing the data-cleaning scripts for the consumption module.
+
+We are grateful for the comments and support of other DEPOCEN researchers, including Manh-Duc Doan, Quang-Thanh Tran, Nguyen Viet Lien, and Ha-My Bui.
+
 **Who is this for?**
+
 This guide is intended for economists, policy analysts, and students who are working with VHLSS microdata. We assume a basic understanding of statistical software (specifically Stata and R) and familiarity with household survey structures.
 
 **Structure of the Documentation**
+
 * Data Structure: An overview of the VHLSS history and sample design.
-* Cleaning Procedure: A step-by-step workflow for moving from raw files to a master harmonized dataset, with provided Stata code
+
+* Cleaning Procedure: A step-by-step workflow for moving from raw files to a master harmonized dataset, with provided Stata code.
+
 * Notes & References: A collection of insights from the wider economic research community.
 
-**Acknowledgements** 
-We would like to thank the General Statistics Office (GSO) for their work in conducting these surveys and the various scholars whose previous notes on VHLSS provided the foundation for this consolidated procedure.
+**Acknowledgements**
+
+We would like to thank the [General Statistics Office (GSO)](https://www.nso.gov.vn/en/homepage/) for their work in conducting these surveys and the various scholars whose previous notes on VHLSS provided the foundation for this consolidated procedure.
 
 

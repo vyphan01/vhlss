@@ -1,14 +1,280 @@
-p.caption {
-  color: #777;
+/* --- Base Typography & Colors --- */
+body {
+  color: #333;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Simplified GitBook Header / Toolbar --- */
+.book .book-header {
+  background: linear-gradient(to bottom, #1a2980 0%, #2a3a90 100%);
+  border-bottom: 1px solid #0fa1e0;
+}
+
+.book .book-header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.book .book-header .btn {
+  color: white;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 10px 15px;
+  border-radius: 0;
+  transition: background-color 0.3s ease;
+}
+
+.book .book-header .btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: none;
+  box-shadow: none;
+}
+
+.book .book-header .btn i.fa {
+  color: white;
+}
+
+/* --- Table of Contents / Navigation Bar --- */
+.book .book-summary {
+  background: linear-gradient(to bottom, #1a2980 0%, #26d0ce 100%);
+  border-right: 1px solid #0fa1e0;
+}
+
+.book .book-summary ul.summary {
+  padding-left: 0;
+}
+
+.book .book-summary ul.summary li a {
+  color: #ffffff;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.book .book-summary ul.summary li a:hover,
+.book .book-summary ul.summary li.active > a {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.book .book-summary ul.summary li.header {
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  padding: 12px 15px;
   margin-top: 10px;
+  font-weight: 600;
+  border-left: 3px solid #0fa1e0;
 }
-p code {
+
+/* --- Main content area styling --- */
+.book .book-body .page-wrapper .page-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 40px;
+}
+
+/* --- Caption Styling --- */
+p.caption {
+  color: #4a90e2;
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 0.95em;
+  border-left: 3px solid #4a90e2;
+  padding-left: 12px;
+  background: linear-gradient(to right, rgba(74, 144, 226, 0.05), transparent);
+}
+
+/* --- Inline Code --- */
+p code, li code {
+  background-color: #e6f2ff;
+  color: #0066cc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-size: 0.9em;
+  border: 1px solid #b3d9ff;
   white-space: inherit;
+  transition: background-color 0.2s ease;
 }
+
+p code:hover, li code:hover {
+  background-color: #d1e7ff;
+}
+
+/* --- Code Blocks --- */
 pre {
   word-break: normal;
   word-wrap: normal;
+  background: linear-gradient(135deg, #1a2980, #26d0ce);
+  background-color: #1a2980;
+  padding: 1.2em;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(26, 41, 128, 0.2);
+  overflow-x: auto;
+  margin: 1.5em 0;
 }
+
 pre code {
   white-space: inherit;
+  color: #e6f7ff;
+  font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+  display: block;
+}
+
+/* --- Headers --- */
+h1, h2, h3, h4 {
+  color: #1a2980;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e6f2ff;
+}
+
+h1 {
+  color: #1a2980;
+  font-size: 2em;
+  border-bottom: 3px solid #4a90e2;
+}
+
+/* --- Links --- */
+a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #004c99;
+  text-decoration: underline;
+}
+
+/* --- Blockquotes --- */
+blockquote {
+  border-left: 4px solid #4a90e2;
+  background-color: #e6f2ff;
+  padding: 1em 1.5em;
+  margin: 1.5em 0;
+  border-radius: 0 4px 4px 0;
+  color: #555;
+}
+
+/* --- Tables --- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+th {
+  background-color: #1a2980;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tr:nth-child(even) {
+  background-color: #f0f8ff;
+}
+
+tr:hover {
+  background-color: #e6f2ff;
+}
+
+/* --- Lists --- */
+ul, ol {
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* --- Simple Alert Boxes --- */
+.note {
+  background-color: #e6f2ff;
+  border-left: 4px solid #4a90e2;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.warning {
+  background-color: #fff8e6;
+  border-left: 4px solid #ffa726;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* --- Horizontal Rule --- */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #4a90e2, transparent);
+  margin: 2em 0;
+}
+
+/* --- Remove rounded buttons but keep for optional use elsewhere --- */
+/* .btn class removed from automatic styling - will only apply if explicitly added */
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  .book .book-body .page-wrapper .page-inner {
+    padding: 15px 20px;
+  }
+  
+  pre {
+    padding: 1em;
+    border-radius: 6px;
+    margin: 1em 0;
+  }
+  
+  h1 {
+    font-size: 1.6em;
+  }
+}
+
+/* --- Print Styles --- */
+@media print {
+  body {
+    color: #000;
+    background: #fff;
+  }
+  
+  .book .book-summary,
+  .book .book-header {
+    display: none;
+  }
+  
+  pre {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+  }
+  
+  pre code {
+    color: #000;
+  }
+  
+  a {
+    color: #000;
+  }
 }

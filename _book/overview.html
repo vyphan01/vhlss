@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Overview | VHLSS Cleaning Procedure</title>
+  <title>Chapter 1 Overview | Viet Nam Household Living Standards Survey Codebook</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Overview | VHLSS Cleaning Procedure" />
+  <meta property="og:title" content="Chapter 1 Overview | Viet Nam Household Living Standards Survey Codebook" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,17 +19,17 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Overview | VHLSS Cleaning Procedure" />
+  <meta name="twitter:title" content="Chapter 1 Overview | Viet Nam Household Living Standards Survey Codebook" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="Tuong-Vy Phan, Nguyen Thi Hong Tram &amp; Huy Le Vu" />
+<meta name="author" content="Development and Policies Research Center (DEPOCEN)" />
 
 
-<meta name="date" content="2025-12-23" />
+<meta name="date" content="2026-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,6 +58,8 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -159,37 +161,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-structure.html"><a href="data-structure.html#outline-of-the-survey"><i class="fa fa-check"></i><b>2.1</b> Outline of the survey</a></li>
 <li class="chapter" data-level="2.2" data-path="data-structure.html"><a href="data-structure.html#sample-size"><i class="fa fa-check"></i><b>2.2</b> Sample Size</a></li>
-<li class="chapter" data-level="2.3" data-path="data-structure.html"><a href="data-structure.html#basic-statistics"><i class="fa fa-check"></i><b>2.3</b> Basic Statistics</a>
+<li class="chapter" data-level="2.3" data-path="data-structure.html"><a href="data-structure.html#rotating-panel"><i class="fa fa-check"></i><b>2.3</b> Rotating panel</a></li>
+<li class="chapter" data-level="2.4" data-path="data-structure.html"><a href="data-structure.html#weight-data"><i class="fa fa-check"></i><b>2.4</b> Weight Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="procedure.html"><a href="procedure.html"><i class="fa fa-check"></i><b>3</b> Procedure</a>
 <ul>
-<li class="chapter" data-level="" data-path="data-structure.html"><a href="data-structure.html#library"><i class="fa fa-check"></i>Library</a></li>
-<li class="chapter" data-level="" data-path="data-structure.html"><a href="data-structure.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
-<li class="chapter" data-level="" data-path="data-structure.html"><a href="data-structure.html#summary-statistics"><i class="fa fa-check"></i>Summary statistics</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html"><i class="fa fa-check"></i><b>3</b> Cleaning Procedure</a>
+<li class="chapter" data-level="3.1" data-path="procedure.html"><a href="procedure.html#folder-organization"><i class="fa fa-check"></i><b>3.1</b> Folder organization</a></li>
+<li class="chapter" data-level="3.2" data-path="procedure.html"><a href="procedure.html#clear-all-settings"><i class="fa fa-check"></i><b>3.2</b> Clear all settings</a></li>
+<li class="chapter" data-level="3.3" data-path="procedure.html"><a href="procedure.html#set-working-directory"><i class="fa fa-check"></i><b>3.3</b> Set Working Directory</a></li>
+<li class="chapter" data-level="3.4" data-path="procedure.html"><a href="procedure.html#clean-data-for-each-year"><i class="fa fa-check"></i><b>3.4</b> Clean data for each year</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#clear-all-settings"><i class="fa fa-check"></i><b>3.1</b> Clear all settings</a></li>
-<li class="chapter" data-level="3.2" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#set-working-directory"><i class="fa fa-check"></i><b>3.2</b> Set Working Directory</a></li>
-<li class="chapter" data-level="3.3" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#clean-data-for-each-year"><i class="fa fa-check"></i><b>3.3</b> Clean data for each year</a>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#make-sure-each-file-is-uniquely-defined"><i class="fa fa-check"></i>Make sure each file is uniquely defined</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#merge-individual-file"><i class="fa fa-check"></i>Merge individual file</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#extract-variables-from-household-file"><i class="fa fa-check"></i>Extract variables from household file</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#label-define-all-variables"><i class="fa fa-check"></i>Label define all variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="procedure.html"><a href="procedure.html#append-individual-dataset"><i class="fa fa-check"></i><b>3.5</b> Append individual dataset</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#make-sure-each-file-is-uniquely-defined"><i class="fa fa-check"></i><b>3.3.1</b> Make sure each file is uniquely defined</a></li>
-<li class="chapter" data-level="3.3.2" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#merge-household-file"><i class="fa fa-check"></i><b>3.3.2</b> Merge household file</a></li>
-<li class="chapter" data-level="3.3.3" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#generate-variables"><i class="fa fa-check"></i><b>3.3.3</b> Generate variables</a></li>
-<li class="chapter" data-level="3.3.4" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#take-variables-from-individual-file"><i class="fa fa-check"></i><b>3.3.4</b> Take variables from individual file</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#import-the-meta-data"><i class="fa fa-check"></i>Import the meta data</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#rename-and-label-code"><i class="fa fa-check"></i>Rename and label code</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#create-panal-data"><i class="fa fa-check"></i><b>3.4</b> Create panal data</a>
+<li class="chapter" data-level="3.6" data-path="procedure.html"><a href="procedure.html#inconsistent-province-codes"><i class="fa fa-check"></i><b>3.6</b> Inconsistent province codes</a></li>
+<li class="chapter" data-level="3.7" data-path="procedure.html"><a href="procedure.html#generate-new-variables"><i class="fa fa-check"></i><b>3.7</b> Generate new variables</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#import-the-meta-data"><i class="fa fa-check"></i><b>3.4.1</b> Import the meta data</a></li>
-<li class="chapter" data-level="3.4.2" data-path="cleaning-procedure.html"><a href="cleaning-procedure.html#rename-and-label-code"><i class="fa fa-check"></i><b>3.4.2</b> Rename and label code</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#total-income"><i class="fa fa-check"></i>Total income</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#food-consumption"><i class="fa fa-check"></i>Food consumption</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="important-note-during-cleaning.html"><a href="important-note-during-cleaning.html"><i class="fa fa-check"></i><b>4</b> Important note during cleaning</a>
+<li class="chapter" data-level="4" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>4</b> Summary Statistics</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="important-note-during-cleaning.html"><a href="important-note-during-cleaning.html#linking-vhlsss"><i class="fa fa-check"></i><b>4.1</b> Linking VHLSSs</a></li>
-<li class="chapter" data-level="4.2" data-path="important-note-during-cleaning.html"><a href="important-note-during-cleaning.html#inconsistent-province-codes"><i class="fa fa-check"></i><b>4.2</b> Inconsistent province codes</a></li>
-<li class="chapter" data-level="4.3" data-path="important-note-during-cleaning.html"><a href="important-note-during-cleaning.html#inconsistent-industry-codes"><i class="fa fa-check"></i><b>4.3</b> Inconsistent industry codes</a></li>
-<li class="chapter" data-level="4.4" data-path="important-note-during-cleaning.html"><a href="important-note-during-cleaning.html#weight-data"><i class="fa fa-check"></i><b>4.4</b> Weight Data</a></li>
+<li class="chapter" data-level="" data-path="summary-statistics.html"><a href="summary-statistics.html#library"><i class="fa fa-check"></i>Library</a></li>
+<li class="chapter" data-level="" data-path="summary-statistics.html"><a href="summary-statistics.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="summary-statistics.html"><a href="summary-statistics.html#summary-statistics-1"><i class="fa fa-check"></i>Summary statistics</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>5</b> Reference</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -202,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">VHLSS Cleaning Procedure</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Viet Nam Household Living Standards Survey Codebook</a>
           </h1>
         </div>
 

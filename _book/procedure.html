@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Procedure | Viet Nam Household Living Standards Survey Codebook</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Procedure | Viet Nam Household Living Standards Survey Codebook" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Procedure | Viet Nam Household Living Standards Survey Codebook" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Development and Policies Research Center (DEPOCEN)" />
+
+
+<meta name="date" content="2026-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-structure.html"/>
+<link rel="next" href="summary-statistics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">DEPOCEN VHLSS Cleaning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#purpose"><i class="fa fa-check"></i>Purpose</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#availability"><i class="fa fa-check"></i>Availability</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#survey-period"><i class="fa fa-check"></i>Survey period</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#coverage-of-the-survey"><i class="fa fa-check"></i>Coverage of the survey</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html#data-collection-method"><i class="fa fa-check"></i>Data collection method</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-structure.html"><a href="data-structure.html"><i class="fa fa-check"></i><b>2</b> Data Structure</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-structure.html"><a href="data-structure.html#outline-of-the-survey"><i class="fa fa-check"></i><b>2.1</b> Outline of the survey</a></li>
+<li class="chapter" data-level="2.2" data-path="data-structure.html"><a href="data-structure.html#sample-size"><i class="fa fa-check"></i><b>2.2</b> Sample Size</a></li>
+<li class="chapter" data-level="2.3" data-path="data-structure.html"><a href="data-structure.html#rotating-panel"><i class="fa fa-check"></i><b>2.3</b> Rotating panel</a></li>
+<li class="chapter" data-level="2.4" data-path="data-structure.html"><a href="data-structure.html#weight-data"><i class="fa fa-check"></i><b>2.4</b> Weight Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="procedure.html"><a href="procedure.html"><i class="fa fa-check"></i><b>3</b> Procedure</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="procedure.html"><a href="procedure.html#folder-organization"><i class="fa fa-check"></i><b>3.1</b> Folder organization</a></li>
+<li class="chapter" data-level="3.2" data-path="procedure.html"><a href="procedure.html#clear-all-settings"><i class="fa fa-check"></i><b>3.2</b> Clear all settings</a></li>
+<li class="chapter" data-level="3.3" data-path="procedure.html"><a href="procedure.html#set-working-directory"><i class="fa fa-check"></i><b>3.3</b> Set Working Directory</a></li>
+<li class="chapter" data-level="3.4" data-path="procedure.html"><a href="procedure.html#clean-data-for-each-year"><i class="fa fa-check"></i><b>3.4</b> Clean data for each year</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#make-sure-each-file-is-uniquely-defined"><i class="fa fa-check"></i>Make sure each file is uniquely defined</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#merge-individual-file"><i class="fa fa-check"></i>Merge individual file</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#extract-variables-from-household-file"><i class="fa fa-check"></i>Extract variables from household file</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#label-define-all-variables"><i class="fa fa-check"></i>Label define all variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="procedure.html"><a href="procedure.html#append-individual-dataset"><i class="fa fa-check"></i><b>3.5</b> Append individual dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#import-the-meta-data"><i class="fa fa-check"></i>Import the meta data</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#rename-and-label-code"><i class="fa fa-check"></i>Rename and label code</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="procedure.html"><a href="procedure.html#inconsistent-province-codes"><i class="fa fa-check"></i><b>3.6</b> Inconsistent province codes</a></li>
+<li class="chapter" data-level="3.7" data-path="procedure.html"><a href="procedure.html#generate-new-variables"><i class="fa fa-check"></i><b>3.7</b> Generate new variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#total-income"><i class="fa fa-check"></i>Total income</a></li>
+<li class="chapter" data-level="" data-path="procedure.html"><a href="procedure.html#food-consumption"><i class="fa fa-check"></i>Food consumption</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>4</b> Summary Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="summary-statistics.html"><a href="summary-statistics.html#library"><i class="fa fa-check"></i>Library</a></li>
+<li class="chapter" data-level="" data-path="summary-statistics.html"><a href="summary-statistics.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="summary-statistics.html"><a href="summary-statistics.html#summary-statistics-1"><i class="fa fa-check"></i>Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>5</b> Reference</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Viet Nam Household Living Standards Survey Codebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="procedure" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Procedure<a href="procedure.html#procedure" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Analyzing the VHLSS longitudinally presents challenges due to structural design changes, administrative adjustments, and varying module contents. This section outlines these inconsistencies and our strategies for data harmonization. For this version, we utilize the 9,000-household sample to construct a pooled individual-level dataset, focusing on a specific subset of variables.</p>
+<p>The following sections provide a step-by-step guide to navigating this documentation.</p>
+<div id="folder-organization" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Folder organization<a href="procedure.html#folder-organization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+The folder contains data, do file and other materials are organized as follows:
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;">
+Sub-folder
+</th>
+<th style="text-align:left;font-weight: bold;">
+Description
+</th>
+<th style="text-align:left;font-weight: bold;">
+Action
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+01_dofiles
+</td>
+<td style="text-align:left;">
+Code in Stata to clean the datasets
+</td>
+<td style="text-align:left;">
+Run master.do only to modify cleaning
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+02_data
+</td>
+<td style="text-align:left;">
+Raw dataset in Stata (.dta) format
+</td>
+<td style="text-align:left;">
+Do not modify
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+03_temp
+</td>
+<td style="text-align:left;">
+Temporary files
+</td>
+<td style="text-align:left;">
+Do not modify
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+04_clean
+</td>
+<td style="text-align:left;">
+Cleaned data in Stata (.dta) format
+</td>
+<td style="text-align:left;">
+Download and use
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+05_metadata
+</td>
+<td style="text-align:left;">
+Questionnaire and codebook
+</td>
+<td style="text-align:left;">
+Access questionnaire and codebook here
+</td>
+</tr>
+</tbody>
+</table>
+<p>After organizing folder, first thing we need to do is clear all settings and set working directory.</p>
+</div>
+<div id="clear-all-settings" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Clear all settings<a href="procedure.html#clear-all-settings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="procedure.html#cb1-1" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
+<span id="cb1-2"><a href="procedure.html#cb1-2" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-3"><a href="procedure.html#cb1-3" tabindex="-1"></a><span class="kw">clear</span> <span class="fu">matrix</span></span>
+<span id="cb1-4"><a href="procedure.html#cb1-4" tabindex="-1"></a><span class="kw">set</span> <span class="kw">more</span> <span class="kw">off</span></span>
+<span id="cb1-5"><a href="procedure.html#cb1-5" tabindex="-1"></a>eststo <span class="kw">clear</span></span></code></pre></div>
+</div>
+<div id="set-working-directory" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Set Working Directory<a href="procedure.html#set-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Replace username and path to your folder.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="procedure.html#cb2-1" tabindex="-1"></a><span class="kw">if</span> <span class="st">&quot;`c(username)&#39;&quot;</span> == <span class="st">&quot;XXX&quot;</span> {</span>
+<span id="cb2-2"><a href="procedure.html#cb2-2" tabindex="-1"></a>gl MyProject <span class="st">&quot;/Users/XXX/My Drive/DEPOCEN - VHLSS Data cleaning&quot;</span></span>
+<span id="cb2-3"><a href="procedure.html#cb2-3" tabindex="-1"></a>    gl <span class="kw">data</span> <span class="st">&quot;$MyProject/02_data&quot;</span></span>
+<span id="cb2-4"><a href="procedure.html#cb2-4" tabindex="-1"></a>    gl temp  <span class="st">&quot;$MyProject/03_temp&quot;</span></span>
+<span id="cb2-5"><a href="procedure.html#cb2-5" tabindex="-1"></a>    gl <span class="kw">clean</span> <span class="st">&quot;$MyProject/04_clean&quot;</span></span>
+<span id="cb2-6"><a href="procedure.html#cb2-6" tabindex="-1"></a>    gl metadata <span class="st">&quot;$MyProject/05_metadata&quot;</span></span>
+<span id="cb2-7"><a href="procedure.html#cb2-7" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="clean-data-for-each-year" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Clean data for each year<a href="procedure.html#clean-data-for-each-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="make-sure-each-file-is-uniquely-defined" class="section level3 unnumbered hasAnchor">
+<h3>Make sure each file is uniquely defined<a href="procedure.html#make-sure-each-file-is-uniquely-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As each survey year consists of multiple section-specific files, we must ensure all observations are uniquely identified prior to merging.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="procedure.html#cb3-1" tabindex="-1"></a>forval i = 14 (2) 18 {</span>
+<span id="cb3-2"><a href="procedure.html#cb3-2" tabindex="-1"></a>    <span class="kw">foreach</span> <span class="fu">m</span> <span class="kw">in</span> Muc1A Muc2A Muc2X Muc3A Muc3C Muc4a {</span>
+<span id="cb3-3"><a href="procedure.html#cb3-3" tabindex="-1"></a>        <span class="kw">local</span> filepath <span class="st">&quot;$data/vhlss_20`i&#39;/hh_9000/`m&#39;.dta&quot;</span></span>
+<span id="cb3-4"><a href="procedure.html#cb3-4" tabindex="-1"></a>        <span class="kw">capture</span> <span class="kw">confirm</span> file <span class="st">&quot;`filepath&#39;&quot;</span></span>
+<span id="cb3-5"><a href="procedure.html#cb3-5" tabindex="-1"></a>        <span class="kw">if</span> <span class="dt">_rc</span> == 0 {</span>
+<span id="cb3-6"><a href="procedure.html#cb3-6" tabindex="-1"></a>            <span class="kw">use</span> <span class="st">&quot;`filepath&#39;&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb3-7"><a href="procedure.html#cb3-7" tabindex="-1"></a>            <span class="kw">if</span> _N &gt; 0 {</span>
+<span id="cb3-8"><a href="procedure.html#cb3-8" tabindex="-1"></a>                <span class="kw">duplicates</span> <span class="kw">drop</span> tinh huyen xa diaban hoso matv, <span class="kw">force</span></span>
+<span id="cb3-9"><a href="procedure.html#cb3-9" tabindex="-1"></a>                <span class="kw">tempfile</span> uniq_<span class="ot">`m&#39;</span>_20<span class="ot">`i&#39;</span></span>
+<span id="cb3-10"><a href="procedure.html#cb3-10" tabindex="-1"></a>                <span class="kw">save</span> <span class="ot">`uniq_`m&#39;</span>_20<span class="ot">`i&#39;</span>&#39;, <span class="kw">replace</span></span>
+<span id="cb3-11"><a href="procedure.html#cb3-11" tabindex="-1"></a>            }</span>
+<span id="cb3-12"><a href="procedure.html#cb3-12" tabindex="-1"></a>        }</span>
+<span id="cb3-13"><a href="procedure.html#cb3-13" tabindex="-1"></a>    }</span>
+<span id="cb3-14"><a href="procedure.html#cb3-14" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="merge-individual-file" class="section level3 unnumbered hasAnchor">
+<h3>Merge individual file<a href="procedure.html#merge-individual-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="procedure.html#cb4-1" tabindex="-1"></a>forval i = 14 (2) 18 {</span>
+<span id="cb4-2"><a href="procedure.html#cb4-2" tabindex="-1"></a>    <span class="kw">use</span> <span class="ot">`uniq_Muc1A_20`i&#39;</span>&#39;, <span class="kw">clear</span></span>
+<span id="cb4-3"><a href="procedure.html#cb4-3" tabindex="-1"></a>        <span class="kw">foreach</span> <span class="fu">m</span> <span class="kw">in</span> Muc2A Muc2X Muc3A Muc3C Muc4a {</span>
+<span id="cb4-4"><a href="procedure.html#cb4-4" tabindex="-1"></a>            <span class="kw">capture</span> <span class="kw">merge</span> 1:1 tinh huyen xa diaban hoso matv <span class="kw">using</span> <span class="ot">`uniq_`m&#39;</span>_20<span class="ot">`i&#39;</span>&#39;</span>
+<span id="cb4-5"><a href="procedure.html#cb4-5" tabindex="-1"></a>            <span class="kw">capture</span> <span class="kw">drop</span> <span class="kw">if</span> _m == 2</span>
+<span id="cb4-6"><a href="procedure.html#cb4-6" tabindex="-1"></a>            <span class="kw">capture</span> <span class="kw">drop</span> _m</span>
+<span id="cb4-7"><a href="procedure.html#cb4-7" tabindex="-1"></a>        }</span>
+<span id="cb4-8"><a href="procedure.html#cb4-8" tabindex="-1"></a>    <span class="kw">save</span> <span class="st">&quot;$temp/individual_20`i&#39;.dta&quot;</span>, <span class="kw">replace</span></span>
+<span id="cb4-9"><a href="procedure.html#cb4-9" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="extract-variables-from-household-file" class="section level3 unnumbered hasAnchor">
+<h3>Extract variables from household file<a href="procedure.html#extract-variables-from-household-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These variables do not appear in individual file, so we need to take them from household file.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="procedure.html#cb5-1" tabindex="-1"></a>forval i = 14 (2) 18 {</span>
+<span id="cb5-2"><a href="procedure.html#cb5-2" tabindex="-1"></a>    <span class="kw">use</span> <span class="st">&quot;$data/vhlss_20`i&#39;/hh_9000/Ho1.dta&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb5-3"><a href="procedure.html#cb5-3" tabindex="-1"></a>    <span class="kw">keep</span> tinh huyen xa diaban hoso ttnt dantoc tsnguoi <span class="co">// take area, ethnic and household size variable</span></span>
+<span id="cb5-4"><a href="procedure.html#cb5-4" tabindex="-1"></a>    <span class="kw">duplicates</span> <span class="kw">drop</span> tinh huyen xa diaban hoso, <span class="kw">force</span></span>
+<span id="cb5-5"><a href="procedure.html#cb5-5" tabindex="-1"></a>    </span>
+<span id="cb5-6"><a href="procedure.html#cb5-6" tabindex="-1"></a>    <span class="kw">tempfile</span> indiv1_<span class="ot">`i&#39;</span></span>
+<span id="cb5-7"><a href="procedure.html#cb5-7" tabindex="-1"></a>    <span class="kw">save</span> <span class="ot">`indiv1_`i&#39;</span>&#39;</span>
+<span id="cb5-8"><a href="procedure.html#cb5-8" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="procedure.html#cb5-9" tabindex="-1"></a>    <span class="kw">use</span> <span class="st">&quot;$data/vhlss_20`i&#39;/hh_9000/Muc5a1.dta&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb5-10"><a href="procedure.html#cb5-10" tabindex="-1"></a>    <span class="kw">keep</span> tinh huyen xa diaban hoso m5a1ma m5a1c2a m5a1c2b m5a1c3a m5a1c3b <span class="co">// take food consumption variabls</span></span>
+<span id="cb5-11"><a href="procedure.html#cb5-11" tabindex="-1"></a>    <span class="kw">duplicates</span> <span class="kw">drop</span> tinh huyen xa diaban hoso, <span class="kw">force</span></span>
+<span id="cb5-12"><a href="procedure.html#cb5-12" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="procedure.html#cb5-13" tabindex="-1"></a>    <span class="kw">tempfile</span> indiv2_<span class="ot">`i&#39;</span></span>
+<span id="cb5-14"><a href="procedure.html#cb5-14" tabindex="-1"></a>    <span class="kw">save</span> <span class="ot">`indiv2_`i&#39;</span>&#39;</span>
+<span id="cb5-15"><a href="procedure.html#cb5-15" tabindex="-1"></a>    </span>
+<span id="cb5-16"><a href="procedure.html#cb5-16" tabindex="-1"></a>    <span class="kw">use</span> <span class="st">&quot;$data/vhlss_20`i&#39;/hh_9000/Muc5a2.dta&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb5-17"><a href="procedure.html#cb5-17" tabindex="-1"></a>    <span class="kw">keep</span> tinh huyen xa diaban hoso m5a2ma m5a2c2a m5a2c2b <span class="co">// take food consumption variabls</span></span>
+<span id="cb5-18"><a href="procedure.html#cb5-18" tabindex="-1"></a>    <span class="kw">duplicates</span> <span class="kw">drop</span> tinh huyen xa diaban hoso, <span class="kw">force</span></span>
+<span id="cb5-19"><a href="procedure.html#cb5-19" tabindex="-1"></a>    <span class="kw">destring</span> m5a2ma, <span class="kw">replace</span></span>
+<span id="cb5-20"><a href="procedure.html#cb5-20" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="procedure.html#cb5-21" tabindex="-1"></a>    <span class="kw">tempfile</span> indiv3_<span class="ot">`i&#39;</span></span>
+<span id="cb5-22"><a href="procedure.html#cb5-22" tabindex="-1"></a>    <span class="kw">save</span> <span class="ot">`indiv3_`i&#39;</span>&#39;</span>
+<span id="cb5-23"><a href="procedure.html#cb5-23" tabindex="-1"></a>    </span>
+<span id="cb5-24"><a href="procedure.html#cb5-24" tabindex="-1"></a>    <span class="kw">use</span> <span class="st">&quot;$temp/individual_20`i&#39;.dta&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb5-25"><a href="procedure.html#cb5-25" tabindex="-1"></a>        forval j = 1/3 {</span>
+<span id="cb5-26"><a href="procedure.html#cb5-26" tabindex="-1"></a>            <span class="kw">merge</span> <span class="fu">m</span>:1 tinh huyen xa diaban hoso <span class="kw">using</span> <span class="ot">`indiv`j&#39;</span>_<span class="ot">`i&#39;</span>&#39;</span>
+<span id="cb5-27"><a href="procedure.html#cb5-27" tabindex="-1"></a>            <span class="kw">drop</span> <span class="kw">if</span> _m == 2</span>
+<span id="cb5-28"><a href="procedure.html#cb5-28" tabindex="-1"></a>            <span class="kw">drop</span> _m</span>
+<span id="cb5-29"><a href="procedure.html#cb5-29" tabindex="-1"></a>        }</span>
+<span id="cb5-30"><a href="procedure.html#cb5-30" tabindex="-1"></a>    <span class="kw">save</span> <span class="st">&quot;$temp/individual_20`i&#39;.dta&quot;</span>, <span class="kw">replace</span></span>
+<span id="cb5-31"><a href="procedure.html#cb5-31" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="label-define-all-variables" class="section level3 unnumbered hasAnchor">
+<h3>Label define all variables<a href="procedure.html#label-define-all-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Due to the legacy GSO encoding used in the raw data, we converted the character sets into a readable format. Specifically, we extracted the correct value labels for all variables of interest into a separate do-file, which is then executed within the master script.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="procedure.html#cb6-1" tabindex="-1"></a>forval i = 14 (2) 18 {</span>
+<span id="cb6-2"><a href="procedure.html#cb6-2" tabindex="-1"></a>    <span class="kw">use</span> <span class="st">&quot;$temp/individual_20`i&#39;.dta&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb6-3"><a href="procedure.html#cb6-3" tabindex="-1"></a>    </span>
+<span id="cb6-4"><a href="procedure.html#cb6-4" tabindex="-1"></a>    <span class="co">// Run the fixed labels</span></span>
+<span id="cb6-5"><a href="procedure.html#cb6-5" tabindex="-1"></a>    <span class="kw">do</span> <span class="st">&quot;$temp/vhlss_labels_fixed.do&quot;</span></span>
+<span id="cb6-6"><a href="procedure.html#cb6-6" tabindex="-1"></a>    </span>
+<span id="cb6-7"><a href="procedure.html#cb6-7" tabindex="-1"></a>    <span class="co">// Automatically attach labels to variables with the same name</span></span>
+<span id="cb6-8"><a href="procedure.html#cb6-8" tabindex="-1"></a>    <span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">varlist</span> <span class="dt">_all</span> {</span>
+<span id="cb6-9"><a href="procedure.html#cb6-9" tabindex="-1"></a>        <span class="kw">capture</span> <span class="kw">label</span> <span class="kw">values</span> <span class="ot">`v&#39;</span> <span class="ot">`v&#39;</span></span>
+<span id="cb6-10"><a href="procedure.html#cb6-10" tabindex="-1"></a>    }</span>
+<span id="cb6-11"><a href="procedure.html#cb6-11" tabindex="-1"></a>    </span>
+<span id="cb6-12"><a href="procedure.html#cb6-12" tabindex="-1"></a>    <span class="kw">save</span> <span class="st">&quot;$temp/individual_20`i&#39;.dta&quot;</span>, <span class="kw">replace</span></span>
+<span id="cb6-13"><a href="procedure.html#cb6-13" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="append-individual-dataset" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Append individual dataset<a href="procedure.html#append-individual-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="import-the-meta-data" class="section level3 unnumbered hasAnchor">
+<h3>Import the meta data<a href="procedure.html#import-the-meta-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variable names and the ordering of questions frequently change between survey waves. For instance, the variable for <code>education</code> may be coded as <em>m2ac2a</em> in one year and <em>m2xc2a</em> in another. To facilitate analysis, we have compiled comprehensive metadata mapping variable names and labels for each year, which is available in the <code>05_metadata/VHLSS_codebook_9k_thanhvien - thanhvien.csv</code>. This dataset is restricted to variables of interest. To add further variables, download the <a href="https://docs.google.com/spreadsheets/d/1zyGJARgK3_1daXMCwZtn-5dU-kDYZ0_u3rRJUfMP8xQ/edit?usp=sharing">metadata</a> and ensure all new variables are harmonized to account for naming inconsistencies across years.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="procedure.html#cb7-1" tabindex="-1"></a>import delimited <span class="st">&quot;$metadata/VHLSS_codebook_9k_thanhvien - thanhvien.csv&quot;</span>, varnames(1) encoding(UTF-8) <span class="kw">clear</span></span></code></pre></div>
+</div>
+<div id="rename-and-label-code" class="section level3 unnumbered hasAnchor">
+<h3>Rename and label code<a href="procedure.html#rename-and-label-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="procedure.html#cb8-1" tabindex="-1"></a><span class="kw">local</span> <span class="kw">N</span> = _N</span>
+<span id="cb8-2"><a href="procedure.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="procedure.html#cb8-3" tabindex="-1"></a>forval i = 2014 (2) 2018 {</span>
+<span id="cb8-4"><a href="procedure.html#cb8-4" tabindex="-1"></a>    <span class="co">// Open file</span></span>
+<span id="cb8-5"><a href="procedure.html#cb8-5" tabindex="-1"></a>    file open myfile <span class="kw">using</span> <span class="st">`&quot;</span><span class="ot">$temp</span>/label_in<span class="ot">`i&#39;</span>.do<span class="st">&quot;&#39;, write text replace</span></span>
+<span id="cb8-6"><a href="procedure.html#cb8-6" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb8-7"><a href="procedure.html#cb8-7" tabindex="-1"></a><span class="st">    local renamed_vars &quot;&quot;</span></span>
+<span id="cb8-8"><a href="procedure.html#cb8-8" tabindex="-1"></a><span class="st">    forval iii = 1/`N&#39; {</span></span>
+<span id="cb8-9"><a href="procedure.html#cb8-9" tabindex="-1"></a><span class="st">        local vvvcode = code[`iii&#39;]</span></span>
+<span id="cb8-10"><a href="procedure.html#cb8-10" tabindex="-1"></a><span class="st">        local vvv_i = code_`i&#39;[`iii&#39;]</span></span>
+<span id="cb8-11"><a href="procedure.html#cb8-11" tabindex="-1"></a><span class="st">        local v_desc = description[`iii&#39;]</span></span>
+<span id="cb8-12"><a href="procedure.html#cb8-12" tabindex="-1"></a><span class="st">        </span></span>
+<span id="cb8-13"><a href="procedure.html#cb8-13" tabindex="-1"></a><span class="st">        // Check if code_`i&#39; is not empty</span></span>
+<span id="cb8-14"><a href="procedure.html#cb8-14" tabindex="-1"></a><span class="st">        if `&quot;</span><span class="ot">`vvv_i&#39;</span><span class="st">&quot;&#39; != &quot;&quot; {</span></span>
+<span id="cb8-15"><a href="procedure.html#cb8-15" tabindex="-1"></a><span class="st">                // 1. Create the Rename command</span></span>
+<span id="cb8-16"><a href="procedure.html#cb8-16" tabindex="-1"></a><span class="st">            local result = `&quot;</span>ren <span class="ot">`vvv_i&#39;</span> <span class="ot">`vvvcode&#39;</span><span class="st">&quot;&#39;</span></span>
+<span id="cb8-17"><a href="procedure.html#cb8-17" tabindex="-1"></a><span class="st">            file write myfile `&quot;</span><span class="ot">`result&#39;</span><span class="st">&quot;&#39; _n</span></span>
+<span id="cb8-18"><a href="procedure.html#cb8-18" tabindex="-1"></a><span class="st">                </span></span>
+<span id="cb8-19"><a href="procedure.html#cb8-19" tabindex="-1"></a><span class="st">                // 2. Create the Label command</span></span>
+<span id="cb8-20"><a href="procedure.html#cb8-20" tabindex="-1"></a><span class="st">            local lab_cmd `&quot;</span>label <span class="kw">variable</span> <span class="ot">`vvvcode&#39;</span> <span class="st">`&quot;</span><span class="ot">`v_desc&#39;</span><span class="st">&quot;&#39;&quot;</span>&#39;</span>
+<span id="cb8-21"><a href="procedure.html#cb8-21" tabindex="-1"></a>            file write myfile <span class="st">`&quot;</span><span class="ot">`lab_cmd&#39;</span><span class="st">&quot;&#39; _n</span></span>
+<span id="cb8-22"><a href="procedure.html#cb8-22" tabindex="-1"></a><span class="st">            </span></span>
+<span id="cb8-23"><a href="procedure.html#cb8-23" tabindex="-1"></a><span class="st">            local renamed_vars &quot;</span><span class="ot">`renamed_vars&#39;</span> <span class="ot">`vvvcode&#39;</span><span class="st">&quot;            </span></span>
+<span id="cb8-24"><a href="procedure.html#cb8-24" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb8-25"><a href="procedure.html#cb8-25" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb8-26"><a href="procedure.html#cb8-26" tabindex="-1"></a><span class="st">    file write myfile `&quot;</span>keep<span class="ot">`renamed_vars&#39;</span><span class="st">&quot;&#39; </span></span>
+<span id="cb8-27"><a href="procedure.html#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="procedure.html#cb8-28" tabindex="-1"></a><span class="st">    // close file</span></span>
+<span id="cb8-29"><a href="procedure.html#cb8-29" tabindex="-1"></a><span class="st">    file close myfile</span></span>
+<span id="cb8-30"><a href="procedure.html#cb8-30" tabindex="-1"></a><span class="st">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="procedure.html#cb9-1" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-2"><a href="procedure.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="procedure.html#cb9-3" tabindex="-1"></a><span class="kw">tempfile</span> combined_data</span>
+<span id="cb9-4"><a href="procedure.html#cb9-4" tabindex="-1"></a><span class="kw">save</span> <span class="ot">`combined_data&#39;</span>, emptyok</span>
+<span id="cb9-5"><a href="procedure.html#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="procedure.html#cb9-6" tabindex="-1"></a>forval i = 2014 (2) 2018 {</span>
+<span id="cb9-7"><a href="procedure.html#cb9-7" tabindex="-1"></a>    <span class="co">// Use file corresponding to each year</span></span>
+<span id="cb9-8"><a href="procedure.html#cb9-8" tabindex="-1"></a>    <span class="kw">use</span> <span class="st">&quot;$temp/individual_`i&#39;.dta&quot;</span>, <span class="kw">clear</span></span>
+<span id="cb9-9"><a href="procedure.html#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="procedure.html#cb9-10" tabindex="-1"></a>    <span class="co">// Run file .do corresponding to each year</span></span>
+<span id="cb9-11"><a href="procedure.html#cb9-11" tabindex="-1"></a>    <span class="kw">do</span> <span class="st">`&quot;</span><span class="ot">$temp</span>/label_in<span class="ot">`i&#39;</span>.do<span class="st">&quot;&#39;</span></span>
+<span id="cb9-12"><a href="procedure.html#cb9-12" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb9-13"><a href="procedure.html#cb9-13" tabindex="-1"></a><span class="st">    gen year = `i&#39;</span></span>
+<span id="cb9-14"><a href="procedure.html#cb9-14" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="procedure.html#cb9-15" tabindex="-1"></a><span class="st">    // Append data to initially created file</span></span>
+<span id="cb9-16"><a href="procedure.html#cb9-16" tabindex="-1"></a><span class="st">    append using `combined_data&#39;</span></span>
+<span id="cb9-17"><a href="procedure.html#cb9-17" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="procedure.html#cb9-18" tabindex="-1"></a><span class="st">    save `combined_data&#39;, replace</span></span>
+<span id="cb9-19"><a href="procedure.html#cb9-19" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb9-20"><a href="procedure.html#cb9-20" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="procedure.html#cb9-21" tabindex="-1"></a><span class="st">save &quot;</span><span class="ot">$temp</span>/vhlss_individual_14_18.dta<span class="st">&quot;, replace</span></span></code></pre></div>
+</div>
+</div>
+<div id="inconsistent-province-codes" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Inconsistent province codes<a href="procedure.html#inconsistent-province-codes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As many users of Vietnamese data know, the number of provinces has changed significantly since the late 1980s. In most cases the changing of provincial boundaries was either a splitting or aggregating of existing provinces as opposed to districts being reallocated between provinces. The province codes also change within surveys and across data sources.</p>
+<p>All province codes in this processed dataset are consistent across years. The implementation of this standardization can be found in <a href="https://sites.google.com/site/briandmccaig/notes-on-vhlsss">Brian McCaig’s website</a>.</p>
+</div>
+<div id="generate-new-variables" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Generate new variables<a href="procedure.html#generate-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Below are variables of interest that we create for our research purpose</p>
+<div id="education" class="section level3 unnumbered hasAnchor">
+<h3>Education<a href="procedure.html#education" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="procedure.html#cb10-1" tabindex="-1"></a><span class="kw">gen</span> education = 0 <span class="kw">if</span> general_edu == 0 &amp; vocational_edu == 0</span>
+<span id="cb10-2"><a href="procedure.html#cb10-2" tabindex="-1"></a><span class="kw">replace</span> education = 1 <span class="kw">if</span> general_edu == 1</span>
+<span id="cb10-3"><a href="procedure.html#cb10-3" tabindex="-1"></a><span class="kw">replace</span> education = 2 <span class="kw">if</span> general_edu == 2</span>
+<span id="cb10-4"><a href="procedure.html#cb10-4" tabindex="-1"></a><span class="kw">replace</span> education = 3 <span class="kw">if</span> general_edu == 3</span>
+<span id="cb10-5"><a href="procedure.html#cb10-5" tabindex="-1"></a><span class="kw">replace</span> education = 4 <span class="kw">if</span> vocational_edu == 4</span>
+<span id="cb10-6"><a href="procedure.html#cb10-6" tabindex="-1"></a><span class="kw">replace</span> education = 5 <span class="kw">if</span> vocational_edu == 5</span>
+<span id="cb10-7"><a href="procedure.html#cb10-7" tabindex="-1"></a><span class="kw">replace</span> education = 6 <span class="kw">if</span> vocational_edu == 6</span>
+<span id="cb10-8"><a href="procedure.html#cb10-8" tabindex="-1"></a><span class="kw">replace</span> education = 7 <span class="kw">if</span> vocational_edu == 7</span>
+<span id="cb10-9"><a href="procedure.html#cb10-9" tabindex="-1"></a><span class="kw">replace</span> education = 8 <span class="kw">if</span> general_edu == 8</span>
+<span id="cb10-10"><a href="procedure.html#cb10-10" tabindex="-1"></a><span class="kw">replace</span> education = 9 <span class="kw">if</span> general_edu == 9</span>
+<span id="cb10-11"><a href="procedure.html#cb10-11" tabindex="-1"></a><span class="kw">replace</span> education = 10 <span class="kw">if</span> general_edu == 10</span>
+<span id="cb10-12"><a href="procedure.html#cb10-12" tabindex="-1"></a><span class="kw">replace</span> education = 11 <span class="kw">if</span> general_edu == 11</span>
+<span id="cb10-13"><a href="procedure.html#cb10-13" tabindex="-1"></a><span class="kw">replace</span> education = 12 <span class="kw">if</span> general_edu == 12</span>
+<span id="cb10-14"><a href="procedure.html#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="procedure.html#cb10-15" tabindex="-1"></a>lab <span class="kw">var</span> education <span class="st">&quot;Bằng cấp cao nhất&quot;</span></span>
+<span id="cb10-16"><a href="procedure.html#cb10-16" tabindex="-1"></a>lab def education_lbl 0 <span class="st">&quot;Không có bằng cấp&quot;</span> <span class="co">///</span></span>
+<span id="cb10-17"><a href="procedure.html#cb10-17" tabindex="-1"></a>                  1 <span class="st">&quot;Tiểu học&quot;</span> <span class="co">///</span></span>
+<span id="cb10-18"><a href="procedure.html#cb10-18" tabindex="-1"></a>                  2 <span class="st">&quot;THCS&quot;</span> <span class="co">///</span></span>
+<span id="cb10-19"><a href="procedure.html#cb10-19" tabindex="-1"></a>                  3 <span class="st">&quot;THPT&quot;</span> <span class="co">///</span></span>
+<span id="cb10-20"><a href="procedure.html#cb10-20" tabindex="-1"></a>                  4 <span class="st">&quot;Sơ cấp nghề&quot;</span> <span class="co">///</span></span>
+<span id="cb10-21"><a href="procedure.html#cb10-21" tabindex="-1"></a>                  5 <span class="st">&quot;Trung cấp nghề&quot;</span> <span class="co">///</span></span>
+<span id="cb10-22"><a href="procedure.html#cb10-22" tabindex="-1"></a>                  6 <span class="st">&quot;Trung học chuyên nghiệp&quot;</span> <span class="co">///</span></span>
+<span id="cb10-23"><a href="procedure.html#cb10-23" tabindex="-1"></a>                  7 <span class="st">&quot;Cao đẳng nghề&quot;</span> <span class="co">///</span></span>
+<span id="cb10-24"><a href="procedure.html#cb10-24" tabindex="-1"></a>                  8 <span class="st">&quot;Cao đẳng&quot;</span> <span class="co">///</span></span>
+<span id="cb10-25"><a href="procedure.html#cb10-25" tabindex="-1"></a>                  9 <span class="st">&quot;Đại học&quot;</span> <span class="co">///</span></span>
+<span id="cb10-26"><a href="procedure.html#cb10-26" tabindex="-1"></a>                  10 <span class="st">&quot;Thạc sĩ&quot;</span> <span class="co">///</span></span>
+<span id="cb10-27"><a href="procedure.html#cb10-27" tabindex="-1"></a>                  11 <span class="st">&quot;Tiến sĩ&quot;</span> <span class="co">///</span></span>
+<span id="cb10-28"><a href="procedure.html#cb10-28" tabindex="-1"></a>                  12 <span class="st">&quot;Khác&quot;</span></span>
+<span id="cb10-29"><a href="procedure.html#cb10-29" tabindex="-1"></a>lab val education education_lbl</span></code></pre></div>
+</div>
+<div id="total-income" class="section level3 unnumbered hasAnchor">
+<h3>Total income<a href="procedure.html#total-income" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="procedure.html#cb11-1" tabindex="-1"></a><span class="kw">foreach</span> <span class="fu">m</span> <span class="kw">in</span> wage_1 holiday_bonus_1 bonus_1 wage_2 holiday_bonus_2 bonus_2 {</span>
+<span id="cb11-2"><a href="procedure.html#cb11-2" tabindex="-1"></a>    <span class="kw">replace</span> <span class="ot">`m&#39;</span> = 0 <span class="kw">if</span> <span class="fu">missing</span>(<span class="ot">`m&#39;</span>)</span>
+<span id="cb11-3"><a href="procedure.html#cb11-3" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="procedure.html#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="procedure.html#cb11-5" tabindex="-1"></a><span class="kw">egen</span> income = <span class="fu">rowtotal</span>(wage_1 holiday_bonus_1 bonus_1 wage_2 holiday_bonus_2 bonus_2)</span>
+<span id="cb11-6"><a href="procedure.html#cb11-6" tabindex="-1"></a><span class="kw">replace</span> income = . <span class="kw">if</span> income == 0</span>
+<span id="cb11-7"><a href="procedure.html#cb11-7" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="procedure.html#cb11-8" tabindex="-1"></a>lab <span class="kw">var</span> income <span class="st">&quot;Tổng thu nhập từ tất cả các nguồn (tiền lương, tiền thưởng, phụ cấp, etc.) trong 12 tháng qua&quot;</span></span></code></pre></div>
+</div>
+<div id="food-consumption" class="section level3 unnumbered hasAnchor">
+<h3>Food consumption<a href="procedure.html#food-consumption" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="procedure.html#cb12-1" tabindex="-1"></a>    <span class="co">// holiday consumption</span></span>
+<span id="cb12-2"><a href="procedure.html#cb12-2" tabindex="-1"></a><span class="kw">egen</span> quant_h = <span class="fu">rowtotal</span>(food_cons1_q food_cons2_q)</span>
+<span id="cb12-3"><a href="procedure.html#cb12-3" tabindex="-1"></a><span class="kw">egen</span> values_h = <span class="fu">rowtotal</span>(food_cons1_p food_cons2_p)</span>
+<span id="cb12-4"><a href="procedure.html#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="procedure.html#cb12-5" tabindex="-1"></a>    <span class="co">// daily consumption</span></span>
+<span id="cb12-6"><a href="procedure.html#cb12-6" tabindex="-1"></a><span class="kw">ren</span> (food_cons3_q food_cons3_p) (quant_d values_d)</span>
+<span id="cb12-7"><a href="procedure.html#cb12-7" tabindex="-1"></a>    </span>
+<span id="cb12-8"><a href="procedure.html#cb12-8" tabindex="-1"></a>    <span class="co">// total consumption</span></span>
+<span id="cb12-9"><a href="procedure.html#cb12-9" tabindex="-1"></a><span class="kw">foreach</span> <span class="fu">m</span> <span class="kw">in</span> quant_d quant_h values_d values_h {</span>
+<span id="cb12-10"><a href="procedure.html#cb12-10" tabindex="-1"></a>    <span class="kw">replace</span> <span class="ot">`m&#39;</span> = 0 <span class="kw">if</span> <span class="ot">`m&#39;</span> == .</span>
+<span id="cb12-11"><a href="procedure.html#cb12-11" tabindex="-1"></a>}</span>
+<span id="cb12-12"><a href="procedure.html#cb12-12" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="procedure.html#cb12-13" tabindex="-1"></a><span class="kw">gen</span> food_quant = quant_d*350/30+quant_h</span>
+<span id="cb12-14"><a href="procedure.html#cb12-14" tabindex="-1"></a><span class="kw">gen</span> food_values = values_d*350/30+values_h</span>
+<span id="cb12-15"><a href="procedure.html#cb12-15" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="procedure.html#cb12-16" tabindex="-1"></a>lab <span class="kw">var</span> food_quant <span class="st">&quot;Số lượng thực phẩm tiêu thụ (kg)&quot;</span></span>
+<span id="cb12-17"><a href="procedure.html#cb12-17" tabindex="-1"></a>lab <span class="kw">var</span> food_values <span class="st">&quot;Trị giá thực phẩm tiêu thụ (nghìn đồng)&quot;</span></span>
+<span id="cb12-18"><a href="procedure.html#cb12-18" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="procedure.html#cb12-19" tabindex="-1"></a><span class="kw">drop</span> quant_* values_*</span>
+<span id="cb12-20"><a href="procedure.html#cb12-20" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="procedure.html#cb12-21" tabindex="-1"></a><span class="kw">save</span> <span class="st">&quot;$clean/vhlss_individual_14_18.dta&quot;</span>, <span class="kw">replace</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-structure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-Procedure.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

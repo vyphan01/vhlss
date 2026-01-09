@@ -1,0 +1,7 @@
+# Reference
+VHLSS is a popular dataset and has been used by many scholars. Here are some of the notes from other economists that we should read:
+
+* Notes on Vietnamese data by [Brain McCaig](https://sites.google.com/site/briandmccaig/notes-on-vhlsss)
+* Data and Rscript sharing by [Trinh Thi Huong](https://sites.google.com/tmu.edu.vn/huongtrinhthi/data-and-rscript-sharing)
+* Notes on Vietnamese Microdata by [Lan Anh Ngo](https://rpubs.com/lananhh269/notesonvnmdata)
+* Gaps in Household Income From VHLSS 2018 by [Nguyen Chi Dung](https://rpubs.com/chidungkt/789118)

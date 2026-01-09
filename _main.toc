@@ -1,0 +1,34 @@
+\contentsline {chapter}{Preface}{5}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}VHLSS Introduction}{7}{chapter.1}%
+\contentsline {section}{Purpose}{7}{section*.3}%
+\contentsline {section}{Availability}{7}{section*.4}%
+\contentsline {section}{Survey period}{7}{section*.5}%
+\contentsline {section}{Coverage of the survey}{8}{section*.6}%
+\contentsline {section}{Data collection method}{8}{section*.7}%
+\contentsline {chapter}{\numberline {2}Dataset Basic Information}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Outline of the survey}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Sample Size}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Rotating panel}{10}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Weight Data}{11}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Data Processing Procedure}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Folder organization}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Clear all settings}{14}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Set Working Directory}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Clean data for each year}{14}{section.3.4}%
+\contentsline {subsection}{Make sure each file is uniquely defined}{14}{section*.8}%
+\contentsline {subsection}{Merge individual file}{15}{section*.9}%
+\contentsline {subsection}{Extract variables from household file}{15}{section*.10}%
+\contentsline {subsection}{Label define all variables}{16}{section*.11}%
+\contentsline {section}{\numberline {3.5}Append individual dataset}{16}{section.3.5}%
+\contentsline {subsection}{Import the meta data}{16}{section*.12}%
+\contentsline {subsection}{Rename and label code}{17}{section*.13}%
+\contentsline {section}{\numberline {3.6}Inconsistent province codes}{18}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Generate new variables}{18}{section.3.7}%
+\contentsline {subsection}{Education}{18}{section*.14}%
+\contentsline {subsection}{Total income}{19}{section*.15}%
+\contentsline {subsection}{Food consumption}{19}{section*.16}%
+\contentsline {chapter}{\numberline {4}Summary Statistics (of processed data)}{21}{chapter.4}%
+\contentsline {section}{Library}{21}{section*.17}%
+\contentsline {section}{Import data}{21}{section*.18}%
+\contentsline {section}{Summary statistics}{21}{section*.19}%
+\contentsline {chapter}{\numberline {5}Reference}{23}{chapter.5}%
